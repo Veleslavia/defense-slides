@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Olga Slizovskaia PhD thesis defense 21 October 2020</title>
+
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="css/theme/upf.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+					<aside class="notes">
+						The complementary relationship between audio and video data drives multimodal studies across
+						various domains and problems. Within that scope, we emphasise the important role that visual
+						modality plays in music perception and conduct a study on multimodal data fusion techniques in
+						the music information retrieval domain. In this talk, we outline challenges in audio-visual
+						music information retrieval and present our work that addresses instrument classification and
+						source separation problems in musical instrument performances. We discuss the efficiency of
+						conditioning techniques being applied at different levels of a primary network and make use of
+						two extra modalities of data, namely instrument labels and the corresponding visual stream data.
+					</aside>
+
+				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
+					<img src="img/image52.jpg" class="logo" style="height: 50px">
+					<img src="img/image56.png" class="logo" style="height: 50px">
+					<img src="img/image54.jpg" class="logo" style="height: 50px">
+
+					<h2>Audio-Visual Deep Learning Methods for <br> Musical Instrument Classification
+						and Separation</h2>
+					<p><em>PhD candidate:</em> Olga Slizovskaia </p>
+					<div class="multiCol" style="margin-left: 5em">
+						<div class="col" style="font-size: smaller">
+							<p><em>Supervisors:</em></p>
+							Dr. Emilia Gómez <h4>Joint Research Centre, EC <br> Music Technology Group, UPF</h4>
+							<p></p>
+							Dr. Gloria Haro <h4>Image Processing Group, UPF</h4>
+						</div>
+						<div class="col" style="font-size: smaller">
+							<p><em>Committee:</em></p>
+							Dr. Xavier Giró-i-Nieto <h4>Universitat Politècnica de Catalunya</h4>
+							<p></p>
+							Dr. Xavier Serra <h4>Universitat Pompeu Fabra</h4>
+							<p></p>
+							Dr. Estefanía Cano <h4>Agency for Science, Research and Technology, <br> A*STAR, Singapore</h4>
+						</div>
+					</div>
+					<p><em>21/10/2020</em></p>
+					<aside class="notes">
+						Dear commitee, my supervisors and everyone. I'm proud to be here with you today and to present
+						my PhD thesis titled "Audio-Visual Deep Learning Methods for Musical Instrument Classification
+						and Separation".
+
+						At first, I will talk about what is audio-visual deep learning, what are the task which we are
+						interested in, why you should care about multimodal methods and multimodal deep learning at all
+						I'll explain why it is not so straightforward as it may look and present some of my work.
+					</aside>
+				</section>
+				<section style="text-align: left">
+					<h3>Outline</h3>
+					<h2>I - State of the Art: Audio-Visual Machine Learning and MIR</h2>
+					<h2>II - Audio-Visual Musical Instrument Classification </h2>
+					<h2>III - Audio-Visual Source Separation </h2>
+					<h2>IV - Conclusion</h2>
+				</section>
+
+				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2>I - Audio-Visual ML and MIR</h2>
+				</section>
+
+
+				<section>
+					<aside class="notes">
+						So, what is audio-visual learning and why should you care about it? (Don't trust me, maybe we
+						should not care about it at all).
+						First of all, we should care about AV methods because neither machine perception nor human
+						perception is perfect and  while machine perception is trying to mimic human perception sometimes with success,
+						many problems remain open, especially for complex scenes that involve several perception channels.
+						Music one such phenomenon, it's multimodal by nature from real-life performance to modern music videos.
+						And once we try to analize it, we focus on the following tasks:
+
+					</aside>
+						<h3>Why should we care about Audio-Visual MIR?</h3>
+						<ul>
+							<li class="fragment">Music is multimodal, we aim for better understanding and analysis</li>
+							<li class="fragment">Humans are very good at merging different sources of information, ML algorithms are not</li>
+							<li class="fragment">Various practical applications</li>
+						</ul>
+				</section>
+
+				<section>
+					<aside class="notes">
+					</aside>
+						<h3>What are the challenges in audio-visual MIR?</h3>
+						<ul>
+							<li class="fragment">Shortage of dedicated datasets</li>
+							<li class="fragment">Low quality of available data, large diversity in data</li>
+							<li class="fragment">Dimensionality mismatch problem</li>
+							<li class="fragment">Data aggregation problem</li>
+						</ul>
+				</section>
+
+				<section>
+					<aside class="notes">
+					</aside>
+					<section>
+						<h3>Research question I</h3>
+						<ul>
+							<li class="question">Where can we merge different data representations?</li>
+						</ul>
+					</section>
+					<section data-transition="none">
+						<br>
+						<h3> Early fusion </h3>
+						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/earlyfusion.png">
+					</section>
+					<section data-transition="none">
+						<br>
+						<h3> Late fusion </h3>
+						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/latefusion.png">
+					</section>
+					<section data-transition="none">
+						<br>
+						<h3> Hybrid fusion </h3>
+						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/hybridfusion.png">
+					</section>
+				</section>
+
+				<section>
+						<h3>Research question II</h3>
+						<ul>
+							<li class="question">How should we merge data from different sources?</li>
+						</ul>
+						<ul>
+							<li class="fragment affirmation" style="text-align: left">
+								Concatenation/additive conditioning</li>
+							<li class="fragment affirmation" style="text-align: left">
+								Multiplicative conditioning</li>
+							<li class="fragment affirmation" style="text-align: left">
+								Feature-wise Linear Modulation</li>
+						</ul>
+				</section>
+
+				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2>II - Audio-Visual Musical Instrument Classification</h2>
+				</section>
+
+				<section>
+					<h3> First multimodal approach </h3>
+					<img height="300" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+				</section>
+
+				<section>
+					<h3>Results</h3>
+					<section data-markdown>
+						<textarea data-template>
+							## Audio-only results
+
+							|Dataset | FMs | PT | Steps | Time | Hit@1 | Hit@3 | F1 |
+							| :----- | --- | --- | --- | ---- | ----- | ------ | --- |
+							|FCVID  | 20 | No | 32K | 19h | 42.30 | 64.53 | 43.16 |
+							|FCVID  | 30 | No | 16K | 11h | 65.39 | 81.75 | 67.29 |
+							|FCVID  | 30 | Yes | 16K | 11h | 68.77 | 84.26 | 70.33 |
+							|FCVID  | 50 | No | 24K | 22h | 67.47 | 83.21 | 69.38 |
+							|FCVID  | 50 | Yes | 21K | 19h | **69.39** | **84.32** | **71.23** |
+							|FCVID  | 100 | No | 43K | 98h | 68.56 | 83.97 | 70.42 |
+							|FCVID  | 100 | Yes | 36K | 84h | 67.76 | 83.50 | 69.16 |
+							|YT-8M  | 10 | No | 58K | 82h | 61.15 | 78.45 | 52.19 |
+							|YT-8M  | 20 | Yes | 57K | 92h | **70.07** | **84.20** | **71.09** |
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Visual-only results
+							|Method | Params | Dataset | Hit@1 | Hit@3 | F1 |
+							| :----- | -------- | --- | ---- | ----- | --- |
+							| Han et al. | 1.5M |  FCVID  |  64.13 | 76.82 | 53.64 |
+							| Choi et al. + CC | 2.4M |  FCVID |  77.73 | 92.05 | 77.18 |
+							| Choi et al. + UC | 2.4M |  FCVID |  **79.81** | **96.09** | 78.71 |
+							| Xception + UC | 9.6M |  FCVID | 78.69 | 94.44 | **79.35** |
+							| Han et al. | 1.5M | YT-8M | 59.37 | 70.87 | 56.50 |
+							| Choi et al. + UC | 2.4M | YT-8M | **83.58** | 94.23 | **84.26** |
+							| Xception + UC | 9.6M | YT-8M | 83.53 | **94.69** | 84.16 |
+						</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+							## Audio-visual results
+							| Method | Dataset | Hit@1 | Hit@3 | F1 |
+							| :----- | -------- | --- | ---- | ----- |
+							|Xception @ 50 frames | FCVID | **88.28** | **97.00** | **88.27** |
+							|Choi et al. @ 50 frames | FCVID | 86.97 | 96.09 | 87.25 | 
+							|Xception @ 20 frames | YT-8M | 82.64 | 91.37 | 78.95 |
+							|Choi et al. @ 20 frames | YT-8M | **84.01** | **93.41** | **84.69** |						</textarea>
+					</section>
+
+				</section>
+
+
+				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2>III - Audio-Visual Source Separation</h2>
+				</section>
+
+				<section>
+					<h2>Can you hear the difference?</h2>
+					<br>
+					<p class ="fragment" data-audio-src="audio/rondeau_example_1.wav" > <span class="music">Sample 1</span> </p>
+					<p class ="fragment" data-audio-src="audio/rondeau_example_2.wav" > <span class="music">Sample 2</span></p>
+					<p class ="fragment" data-audio-src="audio/rondeau_example_3.wav" > <span class="music">Sample 3</span></p>
+
+					<aside class="notes">
+						To introduce the topic I'm going to let you hear three short excerpts of the same composition
+						(the same musical piece) and ask you a simple question.
+						I believe that most you can hear a significant difference between sample 3 and the first two
+						examples but... what it's much harder in case of sample 1 and sample 2.
+						how many could hear the difference? The overlap is so strong that it's almoust impossible without
+						special training.
+						Now, I would like you to hear the actual difference between the three of them.
+					</aside>
+				</section>
+
+				<section>
+					<p>Can you hear the difference <span style="color: orange">now?</span></p>
+					<br>
+
+					<aside class="notes"> 
+						This is how the first mixture is different from the second one.
+						This is how the second mixture is different from the first one.
+						This is residue of the third mixture with respect to the first two.
+
+						Can you say if the first samples are from the same musical instrument or not?
+						Would it be easier for you to distinguish between two recordings if I could provide you more information.... like this?
+					</aside>
+
+					<table>
+						<thead>
+							<tr>
+								<th><span class ="fragment" data-audio-src="audio/rondeau_example_1_db.wav" >
+									<span class="music">Separated 1</span>
+								</span></th>
+								<th><span class ="fragment" data-audio-src="audio/rondeau_example_2_vc.wav" >
+									<span class="music">Separated 2</span>
+								</span></th>
+								<th><span class ="fragment" data-audio-src="audio/rondeau_example_3_fl_cl.wav" >
+									<span class="music"> Separated 3 </span>
+								</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class ="fragment">
+								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_1_db.gif"></td>
+								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_2_vc.gif"></td>
+								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_3_fl.gif">
+									<img height="150" data-src="video/rondeau_example_3_cl.gif" ></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</section>
+
+				<section>
+					<aside class="notes"> 
+						Just keep it in mind for a little, while I'm continue to introduce the task which we're trying to solve.
+						Having a single-channel recording of a musical performance, that is to say a mixture of many possibly overlapping signals, we want to estimate their individual tracks, their sources.
+						It can be used for hearing aid, music production, music education, as a preprocessing for other analysis tasks and so on.
+						Here is an illustration of our goal.  
+					</aside>
+
+						<p>What is our <span style="color: orange">goal?</span></p>
+						<video controls>
+							<source src="video/vimss_idea_demo.mp4" type="video/mp4">
+						</video>
+				</section>
+
+				<section>
+					<aside class="notes"> 
+						Now I would like to shortly discuss the common approach to solve this problem and why it is difficult to solve.
+						One of the problems is that sources often overlap and time and frequency. It's especially true for instruments playing in harmony and in unison, this is often the case for classical music. And this is also a problem for instruments of the same family, since they have very similar timbre as well. 
+						
+						It has been shown that the complexity of the task increases with the number of sources, and in our work we tackle the problem not of just two-channel source separation, but we address multiple instrument separation where actual number of sources is not known.
+
+						For many years standard common approach for this task had consisted in estimating binary or ratio masks which could be applied to a magnitude of mixture spectrogram in order to obtain the magnitude spectrogram of the sources, and then recostruct the original sound using either the mixture phase of phase-reconstruction algorithm.
+						Thus we lose some information which can be potentially usefull for source separation and this is our primary motivation for waveform domain source separation.
+
+						On the other hand, with all this complexity and the first example I've shown you in mind, we want to answer another question:
+
+						So we took week information, which is instrument labels information which can be available from another classifier network from taken from a different modality, a decided to use them to condition our model.  
+
+					</aside>
+
+					<section>
+						<h2>Why is it Difficult?</h2>
+						<ul>
+							<li class="fragment">Overlap in time and frequency</li>
+							<li class="fragment">Complexity increases with the number of sources</li>
+							<li class="fragment">Time-Frequency representations may be not enought</li>
+						</ul>
+						<br>
+						<br>
+						<p class="fragment" style="width: 80%; margin: auto; background-color: orange; padding: 20px 0px 20px 10px; color:white">
+							<span style="font-size:48px; float: left">💡</span>
+							<span style="font-size:48px">Can we use extra information to improve separation? </span>
+						</p>
+					</section>
+					<section>
+						<h3>Contributions</h3>
+						<ul>
+							<li>Multi-instrument Source Separation in Time Domain</li>
+							<li>Conditioned on Instrument Labels</li>
+						</ul>
+					</section>
+				</section>
+
+				<section data-background="#ffffff">
+					<aside class="notes"> 
+						Let me briefly explain the architecture.
+						Overall, in deep learning based source separation, there is a huge variety of architecture design. 
+						All that start from an encoder-decoder architecture (but STFT-based), when people started to use U-net with skip connections but also STFT-based,
+						then Wave-U-Net appeared, and we inhereted Wave-U-Net model from their authors. 
+						But, first of all, we are trying to estimated multiple sources which are very sparce, and, finally,
+						we apply a feature modulation with instrument labels on the bottleneck of the U-Net.
+
+						It's multiplicative conditioning, because back then the authors weren't aware of FiLM. We only applied it to the bottleneck although later we tried other combinations.   
+					</aside>
+
+
+					<section data-transition="none"> 
+						<h3> Conditioned Wave-U-Net Architecture </h3>
+							<img class="fragment" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net1.png">
+					</section>
+					<section data-transition="none"> 
+						<h3> Conditioned Wave-U-Net Architecture </h3>
+						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net2.png">
+					</section>
+					<section data-transition="none"> 
+						<h3> Conditioned Wave-U-Net Architecture </h3>
+						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net3.png">
+					</section>
+					<section data-transition="none"> 
+						<h3> Conditioned Wave-U-Net Architecture </h3>
+						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net4.png">
+					</section>
+				</section>
+
+				<section> 
+					<aside class="notes"> 
+						This was trained with a simple MSE loss between original and reconstructed sources, it was trained on a multi-modal dataset of music performances from Rochester university, which is relatively small and has its issues. 
+						So, just a disclaimer, the results which I'm going to show you now are results of the network which has been trained with 30 videos which is about 1,5h in total.
+					</aside>
+
+					<section>
+						<h3> Results </h3>
+					</section>
+
+					<section>
+						<h3>Video Demo: Trained on 30 videos</h3>
+						<video controls>
+							<source src="video/urmp_demo_multisource.mp4" type="video/mp4">
+						</video>
+					</section>
+
+					<section>
+						<aside class="notes"> 
+							We compared our method with InformedNMF approch, which was the closest method able to separate sounds of different instruments and it uses pretrained timbre models. And, surprisingly, our method performs better in SIR.
+						</aside>
+
+						<h3>Metrics and comparisons</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>Method</th>
+									<th>SDR</th>
+									<th>SIR</th>
+									<th>SAR</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><span style="color: #57ba98">InformedNMF</span></td>
+									<th><span style="color: #aaabb8"><em>-0.16</em></span></th>
+									<th>1.42</th>
+									<th>9.31</th>
+								</tr>
+								<tr>
+									<td><span style="color: orange">Exp-Wave-U-Net</span></td>
+									<th>-4.12</th>
+									<th>-3.06</th>
+									<th><span style="color: #aaabb8"><em>12.18</em></span></th>
+								</tr>
+								<tr>
+									<td><span style="color: #ff637d">CExp-Wave-U-Net</span></td>
+									<th>-1.37</th>
+									<th><span style="color: #aaabb8"><em>2.16</em></span></th>
+									<th>6.36</th>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+
+				<section>
+
+					<aside class="notes"> 
+						But we achieve the most notable difference with the baseline when the complexity of the problem increases. 
+						Here you can see that InformedNMF outperforms our model when we test task is the separation of two instruments, but as the number of sources increases, the conditioned wave-u-net notably outperforms the baseline.
+					</aside>
+
+					<h3>Metrics and comparisons</h3>
+					<img data-src="img/sdr.png" height="300px" style="border:1px solid #555a5f">
+					<img data-src="img/sir.png" height="300px" style="border:1px solid #555a5f">
+					<!--<img data-src="img/sar.png" height="250px" style="border:1px solid #555a5f">-->
+				</section>
+
+				<section>
+
+					<aside class="notes"> 
+						As I said, we took the original Wave-U-Net model and did quite a couple of changes. 
+						For example, we optimized the learning rate, we optimized data loading pipeline, we ported it such that it was possible to train on GC TPUs (which we were able to use at the time), also tested half-precision, which resulted in 35 times faster training comparing to the original model. 
+					</aside>
+
+					<h3> Ablation and Speedup</h3>
+					<p class="fragment">Learning rate</p>
+					<p class="fragment">TPUs</p>
+					<p class="fragment">tf.float32 vs tf.float16</p>
+					<p class="fragment" style="font-size: larger; color: orange">Total Speedup: x35.4</p>
+				</section>
+			</section>
+
+			<section>
+				<p>What we did next...</p>
+					<p class="fragment">
+						<a style="font-size: smaller;" href="https://veleslavia.github.io/conditioned-u-net/">https://veleslavia.github.io/conditioned-u-net/</a>
+					</p>
+			</section>
+
+			<section>
+				<h3>Results</h3>
+				<section data-markdown  style="font-size: x-small">
+					<textarea data-template>
+						|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+						| :--- | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+						| IRM | U | `$ 13.1\pm5.4 $` | `$ 12.7\pm6.4 $`  | n/a | `$ 11.79\pm4.26 $` | `$ 19.94\pm5.59 $` | `$ 13.02\pm4.25 $` |
+						| input mix | L | `$-3.7\pm5.7$` | `$-3.7\pm5.7$` | `$18.2\pm4.2$` | `$ -3.48\pm4.82 $` | `$ -3.20\pm4.95 $` | `$ 18.10\pm11.21 $` |
+						| No filtering | 1 | `$  -2.1\pm 6.2 $` | `$ -15.2\pm 10.0 $` | `$ -8.1\pm 5.9 $` | `$ -0.77\pm5.76 $` | `$ 0.57\pm6.85 $` | `$ 10.88\pm3.21 $` |
+						| Wiener (1 it.) | 1-W`$_1$` | `$ -3.9\pm 7.5 $` | `$ -16.0\pm 16.1 $` | `$ -15.1\pm 10.1 $` | `$ -1.01\pm6.20 $` | `$ 1.53\pm7.65 $` | `$ 7.70\pm3.81 $` |
+						| Wiener (2 it.) | 1-W`$_2$` | `$ -7.6\pm 10.7 $` | `$ -21.4\pm 24.1 $` | `$ -25.4\pm 16.8 $` | `$ -2.56\pm7.10 $` | `$ \mathbf{1.72\pm8.52} $` | `$ 4.99\pm5.62 $` |
+						| 1-W`$_2$` with CL | 2-W`$_2$` | `$ -8.2\pm 10.9 $` |  `$ -24.1\pm 25.1  $` |  `$ -26.2\pm 17.8  $` |  `$ -3.06\pm7.06  $` | <span style="color:gray">`$ 1.38\pm8.55 $`</span> | <span style="color:gray">`$ 4.59\pm5.72 $`</span>  |
+						| 2-W`$_2$` but binary masks | 3-W`$_2$` |  <span style="color:gray">`$ -9.7\pm 15.2 $`</span> | <span style="color:gray">`$ -21.6\pm 27.4 $`</span> |  `$ \mathbf{-36.2\pm 18.4}  $` |  `$ -3.82\pm7.95  $` |  `$ 0.09\pm7.10  $` |  `$ 4.93\pm7.53  $`  |
+						| 1-W`$_2$` with noise | 4-W`$_2$` |  <span style="color:gray">`$ -7.6\pm 9.2 $`</span> |  `$-21.7\pm 20.4  $` |  `$ -21.7\pm 15.6 $` |  `$ -3.12\pm6.91  $` |  `$ 0.21\pm8.34  $` |  `$ \mathbf{6.04\pm5.32} $` |
+						| 1-W`$_2$` no dB normalise | 5-W`$_2$` | `$ -10.1\pm 11.6 $` |  `$ -25.3\pm 24.9  $` |  `$ -27.0\pm 17.0  $` |  `$ -3.88\pm7.63  $` |  `$ 0.70\pm9.45  $` |  `$ 4.63\pm6.13  $` |
+						| 1-W`$_2$` linear-scale STFT | 6-W`$_2$` |  <span style="color:gray">`$\mathbf{-7.4\pm 9.9} $`</span> |  `$ \mathbf{-17.5\pm 19.8} $` |  `$ -24.4\pm 15.8  $` | <span style="color:gray">`$\mathbf{-2.27\pm6.85}$`</span> | <span style="color:gray">`$ 1.46\pm8.39 $`</span> | `$ 5.74\pm5.23 $` |
+						| 1-W`$_2$` but MHU-Net  | 7-W`$_2$` | `$ -8.1\pm9.1 $` | `$ -23.7\pm20.4 $` | `$ -20.9\pm15.8 $` | `$ -3.29\pm6.35 $` |  `$ 0.07\pm8.22 $` |  `$ 5.75\pm4.53 $` |
+					</textarea>
+				</section>
+
+				<section data-markdown  style="font-size: x-small">
+					<textarea data-template>
+						|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+						| :--- | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+						| w/o conditioning | 6-W`$_2$` | `$ -7.4\pm 9.9 $` | `$ -17.5\pm 19.8 $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ 1.46\pm8.39 $` | `$ 5.74\pm5.23 $` |
+						| FiLM-bottleneck | 8-W`$_2$` | `$ -8.1\pm9.4 $` | `$ -19.1\pm18.1 $` | `$ -19.5\pm15.3 $` | `$ -2.77\pm6.64 $` | <span style="color:gray">`$ 1.17\pm8.24 $`</span> | <span style="color:gray">`$ 4.95\pm4.84 $`</span> |
+						| FiLM-encoder | 9-W`$_2$` | `$ \mathbf{-3.5\pm6.1} $` | `$ -20.7\pm6.7 $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
+						| FiLM-final | 10-W`$_2$` | `$ -10.1\pm11.7 $` | `$ -34.5\pm28.4 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
+						| Label-multiply | 11-W`$_2$` | <span style="color:gray">`$ -7.2\pm9.8 $`</span> | <span style="color:gray">`$ \mathbf{-15.3\pm15.5 }$`</span> | `$ -18.6\pm20.3 $` | `$ -1.86\pm6.84 $` | `$ \mathbf{2.36\pm8.80} $` | `$ 5.13\pm4.07 $` |
+					</textarea>
+				</section>
+
+				<section data-markdown  style="font-size: x-small">
+					<textarea data-template>
+						|Method | Frames | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+						| :--- | :---: | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+						|w/o conditioning | 0 | 6-W`$_2$` | `$ -7.4\pm 9.9 $` | `$ \mathbf{-17.5\pm 19.8} $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ \mathbf{1.46\pm8.39} $` | `$ 5.74\pm5.23 $` |
+						|FiLM-encoder | 1 | 12-W`$_2$` | `$ -8.3\pm8.9 $` | `$ -26.1\pm17.5 $` | `$ -12.2\pm13.4 $` | `$ -3.38\pm5.54 $` | `$ -0.69\pm6.60 $` | `$ 5.91\pm4.25 $`  |
+						|FiLM-bottleneck | 1 | 17-W`$_2$` | `$ -8.7\pm10.8 $` | `$ -20.7\pm20.1 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
+						|FiLM-final | 1 | 18-W`$_2$` | `$ -4.8\pm7.4 $` | `$ -18.4\pm13.5 $` | `$ -10.9\pm8.7 $` | <span style="color:gray">`$ -2.24\pm6.22 $`</span> | `$ 0.05\pm7.91 $` | `$ 8.87\pm4.90 $` |
+						|Final-multiply | 1 | 16-W`$_2$` | `${-4.1\pm7.2}$` | `$ -19.0\pm13.9 $` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
+						|FiLM-final-lstm | 5 | 13-W`$_2$` | `$ \mathbf{-3.8\pm6.3} $` | `$ -22.7\pm12.6 $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
+						|FiLM-bottleneck-lstm | 5 | 14-W`$_2$` | `$ -4.7\pm6.9 $` | `$ -17.9\pm10.7 $` | `$ -10.3\pm12.7 $` | `$ -1.55\pm5.94 $` | `$ 1.02\pm7.96 $` | `$ 7.90\pm3.27 $` |
+						|FiLM-bottleneck-mp | 5 | 15-W`$_2$` | `$ -7.0\pm7.8 $` | `$ -23.0\pm14.4 $` | `$ -12.1\pm15.0 $` | `$ -2.46\pm5.82 $` | `$ 0.54\pm7.66 $` | `$ 6.28\pm3.61 $` |
+						|SoP-unet7 | 3 | 19 | `$-18.7\pm8.9$` | `$-21.1\pm9.4$` | n/a | `$-3.76\pm4.00$` | `$-1.45\pm4.68$` | `$7.56\pm3.13$` |
+						|SoP-unet7-ft | 3 | 20 | `$-17.5\pm8.5$` | `$-20.3\pm9.3$` | n/a | `$-2.57\pm4.99$` | `$0.47\pm6.43$` | `$6.89\pm2.48$` |
+						|SoP-unet5-Solos | 3 | 21 | `$-16.9\pm8.6$` | `$-18.7\pm8.9$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
+					</textarea>
+				</section>
+
+			</section>
+
+			<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
+				<h2>IV - Conclusion</h2>
+			</section>
+			<section>
+				<h3>Research question I</h3>
+				<ul>
+					<li class="question">Where can we merge different data representations?</li>
+				</ul>
+			</section>
+
+			<section>
+					<h3>Research question II</h3>
+					<ul>
+						<li class="question">How should we merge data from different sources?</li>
+					</ul>
+			</section>
+
+			<section>
+				<h3>Contributions</h3>
+				<div class="references">
+				<ul>
+					<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (SMC, 2016) Automatic musical instrument recognition in audiovisual recordings by combining image and audio classification strategies.</li>
+					<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ACM ICMR, 2017) Musical instrument recognition in user-generated videos using a multimodal convolutional neural network architecture.</li>
+					<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ISMIR-LBD, 2017) Correspondence between audio and visual deep models for musical instrument detection in video recordings.</li>
+					<li style="font-weight: bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ICML-ML4M, 2018) A Case Study of Deep-Learned Activations via Hand-Crafted Audio Features.</li>
+					<li style="font-weight: bold;">O. Slizovskaia, L. Kim, E. Gómez, and G. Haro. (ICASSP, 2019) End-to-end sound source separation conditioned on instrument labels.</li>
+					<li>J.F. Montesinos, O. Slizovskaia, and G. Haro. (IEEE MMSP, 2020) Solos: A Dataset for Audio-Visual Music Analysis.</li>
+					<li>D. Michelsanti, O. Slizovskaia, G. Haro, E. Gómez, Z.H. Tan, and J.Jensen. (INTERSPEECH, 2020) Vocoder-Based Speech Synthesis from Silent Videos. </li>
+					<li style="font-weight: bold;">O. Slizovskaia, G. Haro and E. Gómez. (IEEE/ACM TASLP, 2020) Conditioned Source Separation for Musical Instrument Performances (Under review).</li>
+				</ul>
+				</div>
+			</section>
+
+			<section class="cover" data-background="img/mix1.png" data-state="no-title-footer no-progressbar has-dark-background">
+				Thank you!
+			</section>
+
+			<!--
+			<section>
+				<h3><span style="color: #ff637d">Thank you!</span></h3>
+				<br>
+				<span style="color: orange">Courtesy </span>
+				<br>
+				<ul>
+					<li> URMP Dataset: <br><a style="font-size: smaller;" href="https://doi.org/10.5061/dryad.ng3r749">https://doi.org/10.5061/dryad.ng3r749</a></li>
+					<li> TensorFlow Research Cloud and Jeju DL Camp</li>
+					<li> Maria de Maeztu program</li>
+					<li> GitHub: <a style="font-size: smaller;" href="https://github.com/Veleslavia/vimss">https://github.com/Veleslavia/vimss</a></li>
+				</ul>
+			</section>
+			-->
+
+			<div class="footer"></div>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script src="plugin/search/search.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+
+
+
+		Reveal.initialize({
+			math: {
+				mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js',
+				config: 'TeX-AMS_HTML-full',
+				TeX: {
+					extensions: ["color.js"]
+				}
+			},
+			// specified using percentage units.
+			//width: 960,
+			//height: 700,
+			//controls: false,
+			progress: true,
+			//history: true,
+			//center: false,
+			slideNumber: true,
+			hash: true,
+			//minScale: 0.1,
+			//maxScale: 5,
+			//transition: 'none', //
+			audio: {
+				prefix: 'audio/', 	// audio files are stored in the "audio" folder
+				suffix: '.wav',		// audio files have the ".wav" ending
+				textToSpeechURL: null,  // the URL to the text to speech converter
+				defaultNotes: false, 	// use slide notes as default for the text to speech converter
+				defaultText: false, 	// use slide text as default for the text to speech converter
+				advance: -10, 		// advance to next slide after given time in milliseconds after audio has played, use negative value to not advance 
+				autoplay: true,	// automatically start slideshow
+				defaultDuration: 10,	// default duration in seconds if no audio is available 
+				defaultAudios: false,	// try to play audios with names such as audio/1.2.ogg
+			},
+			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath],
+			dependencies: [
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/math/math.js', async: true },
+				{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function () { return !!document.body.classList; } },
+				{ src: 'plugin/highlight/highlight.js', async: true }
+			]
+		});
+		</script>
+	</body>
+</html>
