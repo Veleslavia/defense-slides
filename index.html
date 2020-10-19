@@ -76,7 +76,6 @@
 					<h2>I - Audio-Visual ML and MIR</h2>
 				</section>
 
-
 				<section>
 					<aside class="notes">
 						So, what is audio-visual learning and why should you care about it? (Don't trust me, maybe we
@@ -91,8 +90,9 @@
 						<h3>Why should we care about Audio-Visual MIR?</h3>
 						<ul>
 							<li class="fragment">Music is multimodal, we aim for better understanding and analysis</li>
-							<li class="fragment">Humans are very good at merging different sources of information, ML algorithms are not</li>
-							<li class="fragment">Various practical applications</li>
+							<li class="fragment">Humans are very good at merging different sources of information</li>
+							<li class="fragment">Yet, ML algorithms are not as good as humans</li>
+							<li class="fragment">Various practical applications (alignment, transcription, separation, localization, tagging etc.)</li>
 						</ul>
 				</section>
 
@@ -137,14 +137,14 @@
 				<section>
 						<h3>Research question II</h3>
 						<ul>
-							<li class="question">How should we merge data from different sources?</li>
+							<li class="question" style="margin-bottom: 1em">How should we merge data from different sources?</li>
 						</ul>
 						<ul>
-							<li class="fragment affirmation" style="text-align: left">
+							<li class="fragment">
 								Concatenation/additive conditioning</li>
-							<li class="fragment affirmation" style="text-align: left">
+							<li class="fragment">
 								Multiplicative conditioning</li>
-							<li class="fragment affirmation" style="text-align: left">
+							<li class="fragment">
 								Feature-wise Linear Modulation</li>
 						</ul>
 				</section>
@@ -154,15 +154,201 @@
 				</section>
 
 				<section>
+					<aside class="notes">
+						Video source: https://www.youtube.com/watch?v=aaxX9Ik6he0 CC0
+					</aside>
+					<h3> Problem definition </h3>
+					<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/problem_definition_informal.png">
+				</section>
+
+				<section>
+					<aside class="notes">
+						For the classification setup, we have a set of objects $X \in \mathbb{R}^N$ and a set of class
+						labels $C \in \{0,1\}^K$. We are interested in predicting a final subset of
+						labels $y=(y_1, y_2, ..., y_K) \in C$ for a sample $x=(x_1, x_2, ..., x_N) \in X$ which is
+						an $N$-dimensional representation of an object $x$. Therefore, we are looking for a function such as
+
+						where $\theta$ are the function parameters and $ \hat{y} $ is a probability vector for the
+						class estimates. A common mapping function $ f $ could be a complex non-linear neural
+						network, where the final probability scores can be obtained via softmax function
+						\[ \hat{y_j}(z) = \frac{e^{z_j}}{\sum_{i=1}^L e^{z_i}}, \] which takes a vector of
+						arbitrary real-valued scores $z = (z_1, ... z_L) \in \mathbb{R}^L $ and transforms
+						it to a vector of values between zero and one that sum to one.
+
+						A common choice to learn the parameters $\theta$ is through a backpropagation
+						algorithm where one of the common  optimization techniques can be used to
+						minimize a loss function. For multi-labels classification,
+						the loss function can be defined as categorical cross-entropy between ground truth and
+						estimated probability distributions of class labels:
+					</aside>
+					<h3> Formal problem definition </h3>
+
+					<ul>
+						<li class="fragment"> set of objects $ \definecolor{signal}{RGB}{18,110,213} {\color{signal} X} \in \mathbb{R}^N$,
+							samples $ {\definecolor{signal}{RGB}{18,110,213} \color{signal}x}=({\color{signal} x_1, x_2, ..., x_N}) \in {\color{signal}X}$ </li>
+						<li class="fragment"> set of class labels $\definecolor{categories}{RGB}{203,23,206} {\color{categories}C} \in \{0,1\}^{\color{categories}K}$ </li>
+						<li class="fragment"> final subset of labels $ \definecolor{classes}{RGB}{114,0,172}  \definecolor{categories}{RGB}{203,23,206}
+							{\color{classes} y } =
+							({\color{classes}y_1, y_2, ..., y_K}) \in {\color{categories} C }$ for a sample
+							$ \definecolor{signal}{RGB}{18,110,213} \color{signal} x$ </li>
+					</ul>
+					<p class="fragment">
+					\[
+					\begin{aligned}
+					\definecolor{classes}{RGB}{114,0,172}
+					\definecolor{params}{RGB}{45,177,93}
+					\definecolor{model}{RGB}{251,0,29}
+					\definecolor{signal}{RGB}{18,110,213}
+					\definecolor{probability}{RGB}{217,86,16}
+					\definecolor{categories}{RGB}{203,23,206}
+
+					{\color{probability} \hat{y}} = {\color{model} f}_{\color{params} \theta}({\color{signal} x})
+					\end{aligned}
+					\]
+
+						<span style="color: rgb(45,177,93)"> find parameters</span>
+						<span style="color: rgb(251,0,29)"> for a model </span> that gives <br>
+						<span style="color: rgb(203,23,206)">class </span>
+						<span style="color: rgb(217,86,16)">estimation probabilities </span>
+						<span style="color: rgb(18,110,213)">for a sample</span>
+
+					</p>
+
+					<p class="fragment">
+						\[
+
+						\definecolor{loss}{RGB}{128,121,14}
+						\definecolor{classes}{RGB}{114,0,172}
+						\definecolor{probability}{RGB}{217,86,16}
+						\definecolor{categories}{RGB}{203,23,206}
+
+							{ \color{loss} \mathcal{L} } ( {\color{classes} y}, {\color{probability} \hat{y}})
+						= -{\color{loss} \sum}_{\color{categories} i=1}^{\color{categories} K} {\color{classes}y_i} {\color{loss} * \log}( {\color{probability} \hat{y}_i })
+						\]
+
+						<span style="color: rgb(203,23,206)">for multi-labels classification, </span>
+						minimize <span style="color: rgb(203,23,206)"> categorical </span>
+						<span style="color: rgb(128,121,14)"> cross-entropy between </span>
+						<span style="color: rgb(114,0,172)"> ground truth </span>
+						<span style="color: rgb(128,121,14)"> and </span>
+						<span style="color: rgb(217,86,16)"> estimated probability distributions </span>
+						<span style="color: rgb(203,23,206)"> of class labels </span>
+					</p>
+
+
+				</section>
+
+				<section>
 					<h3> First multimodal approach </h3>
-					<img height="300" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+					<ul>
+						<li class="fragment"> Hybrid/Late fusion</li>
+						<li class="fragment"> Concatenation</li>
+					</ul>
+					<img class="fragment" height="300" style="margin-left: 2em; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+
+				</section>
+
+
+				<section data-transition="none">
+					<h3> First multimodal approach </h3>
+					<img height="200" style="margin-left: 2em; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+
+					<div class="multiCol">
+						<div class="col fragment">
+						<ul>
+							<li> MelSpec audio representation </li>
+							<li> Architectures</li>
+								<ul>
+									<li> Han et al., 1.5M params</li>
+									<li> Choi et al., 2.4M params</li>
+									<li> Xception, 9.6M params</li>
+								</ul>
+						</ul>
+						</div>
+
+						<div class="col fragment">
+						<ul>
+							<li> Bag-of-frames RGB</li>
+							<li> Number of frames: 10-100 </li>
+								<ul>
+									<li> FCVID: 20-100 </li>
+									<li> YouTube-8M: 10-20 </li>
+								</ul>
+							<li>Fine-tune or train from scratch</li>
+						</ul>
+						</div>
+					</div>
+
+					<blockquote class="fragment">
+						DATASETS
+						<ul>
+							<li> FCVID: Musical Performance With Instruments <br> &emsp; 12 classes, 5K videos, 260 hours </li>
+							<li> YouTube-8M: MusInstr-Normalized <br> &emsp; 46 classes, 60k videos, 4k hours </li>
+						</ul>
+					</blockquote>
+
 				</section>
 
 				<section>
 					<h3>Results</h3>
+					<section data-transition="none" data-markdown>
+						<textarea data-template>
+							### Summary of results
+
+							| Method | Dataset | F1 | `$ \Delta $` F1-A | `$ \Delta $` F1-V |
+							| :----- | -------- | -- | ---- | ----- |
+							|Xception / 50 frames | FCVID | **88.27** | `$-8.92$` | `$-17.04$` |
+							|Choi et al. / 50 frames | FCVID | 87.25 | `$-8.54$`| `$-16.02$` |
+							|Xception / 20 frames | YT-8M | 78.95 | `$+5.21$` | `$-7.86$` |
+							|Choi et al. / 20 frames | YT-8M | **84.69** | `$-0.43$` | `$-13.6$` |
+
+							 > <!-- .element: class="fragment" --> comparing Xception and Choi et al. as they perform compatible as audio-only models
+
+						</textarea>
+
+					</section>
+
+					<section data-transition="none" data-markdown>
+						<aside class="notes">Choi is smaller and have stronger regularization, stronger features </aside>
+
+						<textarea data-template>
+							### Summary of results
+
+							| Method | Dataset | F1 | `$ \Delta $` F1-A | `$ \Delta $` F1-V |
+							| :----- | -------- | -- | ---- | ----- |
+							|Xception / 50 frames | FCVID | **88.27** | `$-8.92$` | `$-17.04$` |
+							|Choi et al. / 50 frames | FCVID | 87.25 | `$-8.54$`| `$-16.02$` |
+							|Xception / 20 frames | YT-8M | 78.95 | <span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `$+5.21^*$` </span> | `$-7.86$` |
+							|Choi et al. / 20 frames | YT-8M | **84.69** | `$-0.43$` | `$-13.6$` |
+
+							<span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `${}^*$` Issues with YouTube-8M annotations &nbsp; </span> <!-- .element: class="fragment" -->
+
+							 > <!-- .element: class="fragment" --> TAKE AWAY:
+							 > multi-modal fusion is beneficial overall <br>
+							 > concatenation is not enough for controversial inputs
+
+						</textarea>
+
+					</section>
+
 					<section data-markdown>
 						<textarea data-template>
-							## Audio-only results
+							### Audio-only results
+							|Method | Params | Dataset | Hit@1 | Hit@3 | F1 |
+							| :----- | -------- | --- | ---- | ----- | --- |
+							| Han et al. | 1.5M |  FCVID  |  64.13 | 76.82 | 53.64 |
+							| Choi et al. + CC | 2.4M |  FCVID |  77.73 | 92.05 | 77.18 |
+							| Choi et al. + UC | 2.4M |  FCVID |  **79.81** | **96.09** | 78.71 |
+							| Xception + UC | 9.6M |  FCVID | 78.69 | 94.44 | **79.35** |
+							| Han et al. | 1.5M | YT-8M | 59.37 | 70.87 | 56.50 |
+							| Choi et al. + UC | 2.4M | YT-8M | **83.58** | 94.23 | **84.26** |
+							| Xception + UC | 9.6M | YT-8M | 83.53 | **94.69** | 84.16 |
+						</textarea>
+					</section>
+
+					<section data-markdown>
+						<textarea data-template>
+							### Visual-only results
 
 							|Dataset | FMs | PT | Steps | Time | Hit@1 | Hit@3 | F1 |
 							| :----- | --- | --- | --- | ---- | ----- | ------ | --- |
@@ -179,27 +365,14 @@
 					</section>
 					<section data-markdown>
 						<textarea data-template>
-							## Visual-only results
-							|Method | Params | Dataset | Hit@1 | Hit@3 | F1 |
-							| :----- | -------- | --- | ---- | ----- | --- |
-							| Han et al. | 1.5M |  FCVID  |  64.13 | 76.82 | 53.64 |
-							| Choi et al. + CC | 2.4M |  FCVID |  77.73 | 92.05 | 77.18 |
-							| Choi et al. + UC | 2.4M |  FCVID |  **79.81** | **96.09** | 78.71 |
-							| Xception + UC | 9.6M |  FCVID | 78.69 | 94.44 | **79.35** |
-							| Han et al. | 1.5M | YT-8M | 59.37 | 70.87 | 56.50 |
-							| Choi et al. + UC | 2.4M | YT-8M | **83.58** | 94.23 | **84.26** |
-							| Xception + UC | 9.6M | YT-8M | 83.53 | **94.69** | 84.16 |
-						</textarea>
-					</section>
-					<section data-markdown>
-						<textarea data-template>
-							## Audio-visual results
+							### Audio-visual results
 							| Method | Dataset | Hit@1 | Hit@3 | F1 |
 							| :----- | -------- | --- | ---- | ----- |
 							|Xception @ 50 frames | FCVID | **88.28** | **97.00** | **88.27** |
 							|Choi et al. @ 50 frames | FCVID | 86.97 | 96.09 | 87.25 | 
 							|Xception @ 20 frames | YT-8M | 82.64 | 91.37 | 78.95 |
-							|Choi et al. @ 20 frames | YT-8M | **84.01** | **93.41** | **84.69** |						</textarea>
+							|Choi et al. @ 20 frames | YT-8M | **84.01** | **93.41** | **84.69** |
+						</textarea>
 					</section>
 
 				</section>
@@ -212,9 +385,16 @@
 				<section>
 					<h2>Can you hear the difference?</h2>
 					<br>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
 					<p class ="fragment" data-audio-src="audio/rondeau_example_1.wav" > <span class="music">Sample 1</span> </p>
 					<p class ="fragment" data-audio-src="audio/rondeau_example_2.wav" > <span class="music">Sample 2</span></p>
 					<p class ="fragment" data-audio-src="audio/rondeau_example_3.wav" > <span class="music">Sample 3</span></p>
+					<p>&nbsp;</p>
+					<p>&nbsp;</p>
+					<div class="remark">
+						* All examples are taken from the URMP dataset: <a style="font-size: smaller;" href="https://doi.org/10.5061/dryad.ng3r749">https://doi.org/10.5061/dryad.ng3r749</a></li>
+					</div>
 
 					<aside class="notes">
 						To introduce the topic I'm going to let you hear three short excerpts of the same composition
@@ -249,7 +429,7 @@
 								<th><span class ="fragment" data-audio-src="audio/rondeau_example_2_vc.wav" >
 									<span class="music">Separated 2</span>
 								</span></th>
-								<th><span class ="fragment" data-audio-src="audio/rondeau_example_3_fl_cl.wav" >
+								<th><span class ="fragment" data-audio-src="audio/rondeau_example_3_cl.wav" >
 									<span class="music"> Separated 3 </span>
 								</span></th>
 							</tr>
@@ -258,8 +438,7 @@
 							<tr class ="fragment">
 								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_1_db.gif"></td>
 								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_2_vc.gif"></td>
-								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_3_fl.gif">
-									<img height="150" data-src="video/rondeau_example_3_cl.gif" ></td>
+								<td style="text-align: right"><img height="150" data-src="video/rondeau_example_3_cl.gif"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -274,11 +453,96 @@
 						Here is an illustration of our goal.  
 					</aside>
 
-						<p>What is our <span style="color: orange">goal?</span></p>
+						<h3> Problem definition </h3>
 						<video controls>
 							<source src="video/vimss_idea_demo.mp4" type="video/mp4">
 						</video>
 				</section>
+
+				<section>
+					<aside class="notes">
+					Single channel source separation (SCSS) consists of estimating the individual sources
+						$x_i$ given a mono mixture time-domain signal $y$ of $N$ sources:
+
+					\begin{equation}
+					y(t) = \sum_{i=1}^{N} x_i(t).
+					\end{equation}
+
+					Instead of predicting time-domain signals, a general approach for solving SCSS involves the
+						estimation of $N$ masks for Short-Term Fourier transform (STFT) values of the mixture.
+						In this case, we consider a time-frequency representation of the mixture $ \boldsymbol{Y} $
+						and the  sources $ \boldsymbol{X_i} $, and the goal of the source separation method is to
+						learn a real-valued (or complex-valued) mask $M_i$ for each source $i$ .
+
+					Let us denote by $|\boldsymbol{X_i}(\tau, \omega)|$ and $|\boldsymbol{Y}(\tau, \omega)|$
+						the magnitude of the STFT value, of $\boldsymbol{X_i}$ and $\boldsymbol{Y}$ respectively,
+						at frequency $\omega$ and time frame $\tau$.
+					In this work, we only consider two types of \textit{real-valued} masks,
+						namely \textit{ideal ratio or soft} masks $M_i^{ir}$:
+					\begin{equation}
+						M_i^{ir}(\tau, \omega) = \frac{|\boldsymbol{X_i}(\tau, \omega)|}{|\boldsymbol{Y}(\tau, \omega)|},
+					\end{equation}
+					and \textit{ideal binary} masks
+					$M_i^{ib}$:
+					\begin{equation}
+					\begin{gathered}
+					M_i^{ib}(\tau, \omega) =
+						\begin{cases}
+						  1, & \text{if}\  \frac{|\boldsymbol{X_i}(\tau, \omega)|}{|\boldsymbol{Y}(\tau, \omega)| - |\boldsymbol{X_i}(\tau, \omega)|} \geq 1 \\
+						  0, & \text{otherwise},
+						\end{cases}
+					\end{gathered}
+					\end{equation}
+					</aside>
+					<h3> Formal problem definition </h3>
+
+					<ul>
+						<li class="fragment"> a mono mixture time-domain signal $y(t)$ </li>
+						<li class="fragment"> individual sources $x_i(t)$ </li>
+					</ul>
+					<p class="fragment">
+					\[
+					\definecolor{classes}{RGB}{114,0,172}
+					\definecolor{params}{RGB}{45,177,93}
+					\definecolor{model}{RGB}{251,0,29}
+					\definecolor{signal}{RGB}{18,110,213}
+					\definecolor{probability}{RGB}{217,86,16}
+					\definecolor{categories}{RGB}{203,23,206}
+
+					y(t) = \sum_{i=1}^{N} x_i(t).
+
+					\]
+
+						the mixture equals to the sum of all sources
+
+						estimate individual sources from the muxture
+						<span style="color: rgb(45,177,93)"> find parameters</span>
+						<span style="color: rgb(251,0,29)"> for a model </span> that gives <br>
+						<span style="color: rgb(203,23,206)">class </span>
+						<span style="color: rgb(217,86,16)">estimation probabilities </span>
+						<span style="color: rgb(18,110,213)">for a sample</span>
+
+					</p>
+
+					<div class="multiCol">
+						<div class="col fragment">
+							direct waveform estimation
+							<ul>
+								<li >  </li>
+								<li >  </li>
+							</ul>
+						</div>
+						<div class="col fragment">
+							masking-based approach
+							<ul>
+								<li >  </li>
+								<li >  </li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+
 
 				<section>
 					<aside class="notes"> 
@@ -297,29 +561,24 @@
 					</aside>
 
 					<section>
-						<h2>Why is it Difficult?</h2>
+						<h2>Known challenges</h2>
 						<ul>
-							<li class="fragment">Overlap in time and frequency</li>
+							<li class="fragment">Same-family instruments are similar to one another</li>
+							<li class="fragment">Unknown in advance number of sources</li>
 							<li class="fragment">Complexity increases with the number of sources</li>
-							<li class="fragment">Time-Frequency representations may be not enought</li>
+							<li class="fragment">Overlap in time and frequency between sources</li>
+							<li class="fragment">Extra: inter-family mimicry for some instruments (clarinet vs. viola)</li>
 						</ul>
 						<br>
 						<br>
-						<p class="fragment" style="width: 80%; margin: auto; background-color: orange; padding: 20px 0px 20px 10px; color:white">
-							<span style="font-size:48px; float: left">💡</span>
+						<p class="fragment" style="width: 80%; margin: auto; background-color: #606623; padding: 20px 0px 20px 10px; color:white">
+							<span style="font-size:48px; float: left">💪</span>
 							<span style="font-size:48px">Can we use extra information to improve separation? </span>
 						</p>
 					</section>
-					<section>
-						<h3>Contributions</h3>
-						<ul>
-							<li>Multi-instrument Source Separation in Time Domain</li>
-							<li>Conditioned on Instrument Labels</li>
-						</ul>
-					</section>
 				</section>
 
-				<section data-background="#ffffff">
+				<section data-transition="none">
 					<aside class="notes"> 
 						Let me briefly explain the architecture.
 						Overall, in deep learning based source separation, there is a huge variety of architecture design. 
@@ -330,6 +589,15 @@
 
 						It's multiplicative conditioning, because back then the authors weren't aware of FiLM. We only applied it to the bottleneck although later we tried other combinations.   
 					</aside>
+
+					<section data-transition="none">
+						<h3>Preliminary study</h3>
+						<ul>
+							<li class="fragment">Multi-instrument Source Separation in Time Domain</li>
+							<li class="fragment">Hybrid fusion</li>
+							<li class="fragment">Multiplicative Conditioning on Instrument Labels</li>
+						</ul>
+					</section>
 
 
 					<section data-transition="none"> 
@@ -357,7 +625,16 @@
 					</aside>
 
 					<section>
-						<h3> Results </h3>
+						<h3> Experiments </h3>
+						<h4 class="fragment">URMP Dataset <a style="font-size: smaller;" href="https://doi.org/10.5061/dryad.ng3r749">https://doi.org/10.5061/dryad.ng3r749</a></h4>
+						<ul class="fragment">
+							<li>13 instruments</li>
+							<li>44 videos -> 40 valid pieces </li>
+							<li>12 duest, 20 trios, 8 quartets </li>
+							<li>87 unique audio tracks </li>
+							<li>Train/Test split: 30/10 pieces </li>
+						</ul>
+
 					</section>
 
 					<section>
@@ -372,7 +649,7 @@
 							We compared our method with InformedNMF approch, which was the closest method able to separate sounds of different instruments and it uses pretrained timbre models. And, surprisingly, our method performs better in SIR.
 						</aside>
 
-						<h3>Metrics and comparisons</h3>
+						<h3>Summary of results</h3>
 						<table>
 							<thead>
 								<tr>
@@ -412,10 +689,21 @@
 						Here you can see that InformedNMF outperforms our model when we test task is the separation of two instruments, but as the number of sources increases, the conditioned wave-u-net notably outperforms the baseline.
 					</aside>
 
-					<h3>Metrics and comparisons</h3>
+					<h3>Summary of results</h3>
 					<img data-src="img/sdr.png" height="300px" style="border:1px solid #555a5f">
 					<img data-src="img/sir.png" height="300px" style="border:1px solid #555a5f">
 					<!--<img data-src="img/sar.png" height="250px" style="border:1px solid #555a5f">-->
+				</section>
+
+				<section>
+
+					<aside class="notes">
+						Take away note: it was inspiring but we lacked TPUs and scaling was not an option
+					</aside>
+
+					<h3>Summary of results</h3>
+					<blockquote>Take away note: it was inspiring but we lacked TPUs and scaling was not an option
+					</blockquote>
 				</section>
 
 				<section>
@@ -435,13 +723,57 @@
 
 			<section>
 				<p>What we did next...</p>
-					<p class="fragment">
-						<a style="font-size: smaller;" href="https://veleslavia.github.io/conditioned-u-net/">https://veleslavia.github.io/conditioned-u-net/</a>
-					</p>
+
+				<!--
+				<p class="fragment">
+					<a style="font-size: smaller;" href="https://veleslavia.github.io/conditioned-u-net/">https://veleslavia.github.io/conditioned-u-net/</a>
+				</p>
+				-->
 			</section>
 
 			<section>
-				<h3>Results</h3>
+				<h3> SOLOS </h3>
+				<ul>
+					<li class="fragment" data-fragment-index="1">13 instruments matching the URMP dataset</li>
+					<li class="fragment" >Only solo performances </li>
+					<li class="fragment" >Semi-automatic and manual quality control </li>
+					<li class="fragment" >Mix-and-separate approach</li>
+					<li class="fragment" >755 individual recordings </li>
+					<li class="fragment" >Extra: valid timestamps and skeletons  </li>
+				</ul>
+
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<div class="remark fragment" data-fragment-index="1">
+					* Joint work with Juan Montesinos <a style="font-size: smaller;" href="https://juanmontesinos.com/Solos">https://juanmontesinos.com/Solos</a></li>
+				</div>
+
+			</section>
+
+			<section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<h3>Design Decisions</h3>
+						<img class="fragment" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net1.png">
+				</section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net2.png">
+				</section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net3.png">
+				</section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net4.png">
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Results</h3>
+				</section>
 				<section data-markdown  style="font-size: x-small">
 					<textarea data-template>
 						|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
@@ -495,6 +827,7 @@
 			<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
 				<h2>IV - Conclusion</h2>
 			</section>
+
 			<section>
 				<h3>Research question I</h3>
 				<ul>
@@ -526,6 +859,7 @@
 			</section>
 
 			<section class="cover" data-background="img/mix1.png" data-state="no-title-footer no-progressbar has-dark-background">
+			<aside class="notes"> See Integrated Gradients at https://captum.ai/docs/captum_insights</aside>
 				Thank you!
 			</section>
 
@@ -565,12 +899,13 @@
 
 
 		Reveal.initialize({
+
 			math: {
-				mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js',
-				config: 'TeX-AMS_HTML-full',
-				TeX: {
-					extensions: ["color.js"]
-				}
+				  mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+				  config: 'TeX-AMS_HTML-full',
+				  // pass other options into `MathJax.Hub.Config()`
+				  TeX: { extensions: ["color.js"], Macros: { RR: "{\\bf R}" }
+				  },
 			},
 			// specified using percentage units.
 			//width: 960,
