@@ -110,8 +110,9 @@
 
 				<section>
 					<aside class="notes">
+						This question is unseparable from the idea of data representation and  learned representation
 					</aside>
-					<section>
+					<section data-transition="none">
 						<h3>Research question I</h3>
 						<ul>
 							<li class="question">Where can we merge different data representations?</li>
@@ -121,32 +122,64 @@
 						<br>
 						<h3> Early fusion </h3>
 						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/earlyfusion.png">
+						<ul>
+							<li class="question">Where can we merge different data representations?</li>
+						</ul>
 					</section>
 					<section data-transition="none">
 						<br>
 						<h3> Late fusion </h3>
 						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/latefusion.png">
+						<ul>
+							<li class="question">Where can we merge different data representations?</li>
+						</ul>
 					</section>
 					<section data-transition="none">
 						<br>
 						<h3> Hybrid fusion </h3>
 						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/hybridfusion.png">
+						<ul>
+							<li class="question">Where can we merge different data representations?</li>
+						</ul>
 					</section>
 				</section>
 
 				<section>
+						<section data-transition="none">
 						<h3>Research question II</h3>
 						<ul>
 							<li class="question" style="margin-bottom: 1em">How should we merge data from different sources?</li>
 						</ul>
-						<ul>
-							<li class="fragment">
-								Concatenation/additive conditioning</li>
-							<li class="fragment">
-								Multiplicative conditioning</li>
-							<li class="fragment">
-								Feature-wise Linear Modulation</li>
-						</ul>
+						</section>
+						<section data-transition="none">
+							<h3>Concatenation (additive conditioning)</h3>
+							<figure class="l-body">
+    							<svg viewBox="0 0 704 230" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="arrow-right" d="M 0 0 C -2.779 1 -5.376 2.445 -7.69 4.28 L -6.14 0 L -7.69 -4.28 C -5.376 -2.445 -2.779 -1 0 0 Z"></path><path id="arrow-down" d="M 0 0 C 1 2.779 2.445 5.376 4.28 7.69 L 0 6.14 L -4.28 7.69 C -2.444 5.376 -1 2.770 0 0 Z" transform="rotate(180, 0, 0)"></path><path id="column-top" d="M 0 6 a 6 6 0 0 1 6 -6 l 8 0 a 6 6 0 0 1 6 6 l 0 14 l -20 0 Z"></path><path id="column-middle" d="M 0 0 l 20 0 l 0 20 l -20 0 Z"></path><path id="column-bottom" d="M 0 0 l 20 0 l 0 14 a 6 6 0 0 1 -6 6 l -8 0 a 6 6 0 0 1 -6 -6 Z"></path></defs><text x="260" y="10" dy="1em" class="figure-text"><tspan><tspan style="font-weight: bold;">Concatenation-based conditioning</tspan></tspan><tspan x="260" dy="1.5em"> simply concatenates the conditioning </tspan><tspan x="260" dy="1.5em"> representation to the input. </tspan></text><text x="445" y="100" dy="0.4em" class="figure-text"><tspan> The result is passed </tspan><tspan x="445" dy="1.5em"> through a linear layer </tspan><tspan x="445" dy="1.5em"> to produce the output. </tspan></text><g transform="translate(10, 70)"><text x="0" y="90" dy="0.4em" class="figure-text"> input </text><g transform="translate(40, 60)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 40)" class="figure-filmed-network figure-element"></use></g><text x="191" y="-30" dy="-0.35em" style="text-anchor: end;" class="figure-text"><tspan>conditioning</tspan><tspan x="191" dy="1.5em">representation</tspan></text><g transform="translate(201, -60)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-film-generator figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 40)" class="figure-film-generator figure-element"></use></g><g transform="translate(191, 30)"><rect width="40" height="120" class="figure-element figure-box"></rect><text x="20" y="60" dy="0.4em" style="text-anchor: middle;" transform="rotate(-90, 20, 60)" class="figure-text">concatenate</text></g><g transform="translate(302, 30)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 60)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 80)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 100)" class="figure-filmed-network figure-element"></use></g><g transform="translate(380, 30)"><rect width="40" height="120" class="figure-element figure-box"></rect><text x="20" y="60" dy="0.4em" style="text-anchor: middle;" transform="rotate(-90, 20, 60)" class="figure-text">linear</text></g><g transform="translate(570, 50)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 60)" class="figure-filmed-network figure-element"></use></g><text x="600" y="90" dy="0.4em" class="figure-text"> output </text><path d="M 60 90 L 186 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(186, 90)" class="figure-path"></use><path d="M 231 90 L 297 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(297, 90)" class="figure-path"></use><path d="M 327 90 L 375 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(375, 90)" class="figure-path"></use><path d="M 420 90 L 565 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(565, 90)" class="figure-path"></use><path d="M 211 0 L 211 25" class="figure-line"></path><use xlink:href="#arrow-down" transform="translate(211, 25)" class="figure-path"></use></g></svg>
+  							</figure>
+							<div class="remark">
+								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a></li>
+							</div>
+						</section>
+						<section data-transition="none">
+							<h3>Multiplicative conditioning</h3>
+							<figure class="l-body">
+								<svg viewBox="0 0 704 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="arrow-right" d="M 0 0 C -2.779 1 -5.376 2.445 -7.69 4.28 L -6.14 0 L -7.69 -4.28 C -5.376 -2.445 -2.779 -1 0 0 Z"></path><path id="arrow-down" d="M 0 0 C 1 2.779 2.445 5.376 4.28 7.69 L 0 6.14 L -4.28 7.69 C -2.444 5.376 -1 2.770 0 0 Z" transform="rotate(180, 0, 0)"></path><path id="column-top" d="M 0 6 a 6 6 0 0 1 6 -6 l 8 0 a 6 6 0 0 1 6 6 l 0 14 l -20 0 Z"></path><path id="column-middle" d="M 0 0 l 20 0 l 0 20 l -20 0 Z"></path><path id="column-bottom" d="M 0 0 l 20 0 l 0 14 a 6 6 0 0 1 -6 6 l -8 0 a 6 6 0 0 1 -6 -6 Z"></path></defs><text x="340" y="30" dy="1em" class="figure-text"><tspan><tspan style="font-weight: bold;">Conditional scaling</tspan> first maps the </tspan><tspan x="340" dy="1.5em"><tspan style="font-weight: bold;">conditioning representation</tspan> to a </tspan><tspan x="340" dy="1.5em"> scaling vector. </tspan></text><text x="340" y="200" dy="1em" class="figure-text"><tspan> The scaling vector is then multiplied </tspan><tspan x="340" dy="1.5em"> with the input. </tspan></text><g transform="translate(-10, 10)"><text x="20" y="250" dy="-0.5em" style="text-anchor: begin;" class="figure-text">input</text><text x="605" y="250" dy="-0.5em" style="text-anchor: begin;" class="figure-text">output</text><g transform="translate(60, 200)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 60)" class="figure-filmed-network figure-element"></use></g><path d="M 80 240 L 300 240" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(300, 240)" class="figure-path"></use><g transform="translate(315, 240)"><circle r="10" class="figure-element"></circle><ellipse rx="2" ry="2" class="figure-path"></ellipse></g><path d="M 325 240 L 570 240" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(570, 240)" class="figure-path"></use><g transform="translate(575, 200)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 60)" class="figure-filmed-network figure-element"></use></g><text x="20" y="60" dy="-0.5em" style="font-weight: bold;" class="figure-text"><tspan>conditioning</tspan><tspan x="20" dy="1.5em">representation</tspan></text><g transform="translate(170, 0)"><rect width="40" height="120" class="figure-film-generator figure-element figure-box"></rect><text x="20" y="60" dy="0.4em" style="text-anchor: middle;" transform="rotate(-90, 20, 60)" class="figure-text">linear</text></g><g transform="translate(305, 20)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-film-generator figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 60)" class="figure-film-generator figure-element"></use></g><path d="M 120 60 L 165 60" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(165, 60)" class="figure-path"></use><path d="M 210 60 L 300 60" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(300, 60)" class="figure-path"></use><path d="M 315 100 L 315 225" class="figure-line"></path><use xlink:href="#arrow-down" transform="translate(315, 225)" class="figure-path"></use></g></svg>
+							</figure>
+							<div class="remark">
+								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a></li>
+							</div>
+						</section>
+
+						<section data-transition="none">
+							<h3>Feature-wise Linear Modulation</h3>
+							<figure class="l-body">
+								<svg viewBox="0 0 704 510" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="arrow-right" d="M 0 0 C -2.779 1 -5.376 2.445 -7.69 4.28 L -6.14 0 L -7.69 -4.28 C -5.376 -2.445 -2.779 -1 0 0 Z"></path><path id="arrow-down" d="M 0 0 C 1 2.779 2.445 5.376 4.28 7.69 L 0 6.14 L -4.28 7.69 C -2.444 5.376 -1 2.770 0 0 Z" transform="rotate(180, 0, 0)"></path></defs><text x="0" y="20" class="figure-text"><tspan> The <tspan style="font-weight: bold;">FiLM generator</tspan> processes the conditioning information </tspan><tspan x="0" dy="1.5em"> and produces parameters that describe how the target network </tspan><tspan x="0" dy="1.5em"> should alter its computation. </tspan></text><path d="M420,10l0,510" style="stroke-width: 1px; stroke: #666; opacity: 0.15;"></path><text x="460" y="20" class="figure-text"><tspan> Here, the <tspan style="font-weight: bold;">FiLM-ed network</tspan>’s computation </tspan><tspan x="460" dy="1.5em"> is conditioned by two FiLM layers. </tspan></text><g transform="translate(0, 40)"><g transform="translate(460, 40)"><text x="150" y="425" class="figure-text">output</text><path d="M130,399L130,430" class="figure-line"></path><use x="130" y="430" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 337)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><path d="M130,305.5L130,332" class="figure-line"></path><use x="130" y="332" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 275.5)" class="film-layer"><rect width="222" height="30" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="15" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM</text></g><path d="M130,244L130,270.5" class="figure-line"></path><use x="130" y="270.5" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 182)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><path d="M130,149.5L130,177" class="figure-line"></path><use x="130" y="177" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 119.5)" class="film-layer"><rect width="222" height="30" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="15" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM</text></g><path d="M130,88L130,114.5" class="figure-line"></path><use x="130" y="114.5" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 26)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><text x="150" y="0" class="figure-text">input</text><path d="M130,-15l0,36" class="figure-line"></path><use x="130" y="21" xlink:href="#arrow-down" class="figure-path"></use></g><g transform="translate(0, 190)"><path d="M0,0l110,0" class="figure-line"></path><use x="110" y="0" xlink:href="#arrow-right" class="figure-path"></use><text x="0" y="0" dy="-0.8em" class="figure-text">conditioning</text></g><g transform="translate(115, 140)" class="film-generator"><rect width="180" height="100" class="figure-film-generator figure-group figure-box"></rect><text x="90" y="50" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM generator</text></g><g><path d="M295,175l175,0" class="figure-line"></path><use x="475" y="175" xlink:href="#arrow-right" class="figure-path"></use><text x="305" y="175" dy="-0.8em" class="figure-text">FiLM parameters</text></g><g><path d="M295,205C360,205,387.5,205,387.5,265S415,330,475,330" class="figure-line"></path><use x="475" y="330" xlink:href="#arrow-right" class="figure-path"></use></g></g></svg>
+							</figure>
+							<div class="remark">
+								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a></li>
+							</div>
+						</section>
+
 				</section>
 
 				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
@@ -158,6 +191,7 @@
 						Video source: https://www.youtube.com/watch?v=aaxX9Ik6he0 CC0
 					</aside>
 					<h3> Problem definition </h3>
+
 					<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/problem_definition_informal.png">
 				</section>
 
@@ -257,23 +291,25 @@
 						<div class="col fragment">
 						<ul>
 							<li> MelSpec audio representation </li>
-							<li> Architectures</li>
-								<ul>
+							<li> Architectures
+								<ul style="list-style:none">
 									<li> Han et al., 1.5M params</li>
 									<li> Choi et al., 2.4M params</li>
 									<li> Xception, 9.6M params</li>
 								</ul>
+							</li>
 						</ul>
 						</div>
 
 						<div class="col fragment">
 						<ul>
 							<li> Bag-of-frames RGB</li>
-							<li> Number of frames: 10-100 </li>
-								<ul>
+							<li> Number of frames: 10-100
+								<ul style="list-style:none">
 									<li> FCVID: 20-100 </li>
 									<li> YouTube-8M: 10-20 </li>
 								</ul>
+							</li>
 							<li>Fine-tune or train from scratch</li>
 						</ul>
 						</div>
@@ -297,10 +333,10 @@
 
 							| Method | Dataset | F1 | `$ \Delta $` F1-A | `$ \Delta $` F1-V |
 							| :----- | -------- | -- | ---- | ----- |
-							|Xception / 50 frames | FCVID | **88.27** | `$-8.92$` | `$-17.04$` |
-							|Choi et al. / 50 frames | FCVID | 87.25 | `$-8.54$`| `$-16.02$` |
-							|Xception / 20 frames | YT-8M | 78.95 | `$+5.21$` | `$-7.86$` |
-							|Choi et al. / 20 frames | YT-8M | **84.69** | `$-0.43$` | `$-13.6$` |
+							|Xception / 50 frames | FCVID | `$ \mathbf{88.27}$` | `$-8.92$` | `$-17.04$` |
+							|Choi et al. / 50 frames | FCVID | `$87.25$` | `$-8.54$`| `$-16.02$` |
+							|Xception / 20 frames | YT-8M | `$78.95$` | `$+5.21$` | `$-7.86$` |
+							|Choi et al. / 20 frames | YT-8M | `$ \mathbf{84.69}$`| `$-0.43$` | `$-13.6$` |
 
 							 > <!-- .element: class="fragment" --> comparing Xception and Choi et al. as they perform compatible as audio-only models
 
@@ -316,10 +352,10 @@
 
 							| Method | Dataset | F1 | `$ \Delta $` F1-A | `$ \Delta $` F1-V |
 							| :----- | -------- | -- | ---- | ----- |
-							|Xception / 50 frames | FCVID | **88.27** | `$-8.92$` | `$-17.04$` |
-							|Choi et al. / 50 frames | FCVID | 87.25 | `$-8.54$`| `$-16.02$` |
-							|Xception / 20 frames | YT-8M | 78.95 | <span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `$+5.21^*$` </span> | `$-7.86$` |
-							|Choi et al. / 20 frames | YT-8M | **84.69** | `$-0.43$` | `$-13.6$` |
+							|Xception / 50 frames | FCVID | `$ \mathbf{88.27}$` | `$-8.92$` | `$-17.04$` |
+							|Choi et al. / 50 frames | FCVID | `$87.25$` | `$-8.54$`| `$-16.02$` |
+							|Xception / 20 frames | YT-8M | `$78.95$` | <span style="background-color: #c8102e; border-radius: 5px"> &nbsp;`$+5.21$` </span> | `$-7.86$` |
+							|Choi et al. / 20 frames | YT-8M | `$ \mathbf{84.69}$`| `$-0.43$` | `$-13.6$` |
 
 							<span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `${}^*$` Issues with YouTube-8M annotations &nbsp; </span> <!-- .element: class="fragment" -->
 
@@ -527,14 +563,16 @@
 					<div class="multiCol">
 						<div class="col fragment">
 							direct waveform estimation
-							<ul>
+							<br>
+							<ul style="list-style:none">
 								<li >  </li>
 								<li >  </li>
 							</ul>
 						</div>
 						<div class="col fragment">
 							masking-based approach
-							<ul>
+							<br>
+							<ul style="list-style:none">
 								<li >  </li>
 								<li >  </li>
 							</ul>
@@ -571,7 +609,7 @@
 						</ul>
 						<br>
 						<br>
-						<p class="fragment" style="width: 80%; margin: auto; background-color: #606623; padding: 20px 0px 20px 10px; color:white">
+						<p class="fragment" style="width: 80%; margin: auto; background-color: hsl(11,65%,70%); padding: 20px 0px 20px 10px; color:white">
 							<span style="font-size:48px; float: left">💪</span>
 							<span style="font-size:48px">Can we use extra information to improve separation? </span>
 						</p>
@@ -661,22 +699,22 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td><span style="color: #57ba98">InformedNMF</span></td>
-									<th><span style="color: #aaabb8"><em>-0.16</em></span></th>
-									<th>1.42</th>
-									<th>9.31</th>
+									<td>InformedNMF</td>
+									<th>-0.16</th>
+									<th style="font-weight: normal;">1.42</th>
+									<th style="font-weight: normal;">9.31</th>
 								</tr>
 								<tr>
-									<td><span style="color: orange">Exp-Wave-U-Net</span></td>
-									<th>-4.12</th>
-									<th>-3.06</th>
-									<th><span style="color: #aaabb8"><em>12.18</em></span></th>
+									<td>Exp-Wave-U-Net</td>
+									<th style="font-weight: normal;">-4.12</th>
+									<th style="font-weight: normal;">-3.06</th>
+									<th>12.18</th>
 								</tr>
 								<tr>
-									<td><span style="color: #ff637d">CExp-Wave-U-Net</span></td>
-									<th>-1.37</th>
-									<th><span style="color: #aaabb8"><em>2.16</em></span></th>
-									<th>6.36</th>
+									<td>CExp-Wave-U-Net</td>
+									<th style="font-weight: normal;">-1.37</th>
+									<th>2.16</th>
+									<th style="font-weight: normal;">6.36</th>
 								</tr>
 							</tbody>
 						</table>
