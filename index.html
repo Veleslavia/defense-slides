@@ -753,72 +753,80 @@
 			<section>
 				<section data-transition="none">
 					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<h3 class="fragment" >Design Decisions</h3>
+						<img class="fragment" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/params.svg">
+				</section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
 					<h3>Design Decisions</h3>
-						<img class="fragment" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net1.png">
-				</section>
-				<section data-transition="none">
-					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
-					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net2.png">
-				</section>
-				<section data-transition="none">
-					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
-					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net3.png">
-				</section>
-				<section data-transition="none">
-					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
-					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/CExp-U-Net4.png">
+						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/params_final.svg">
 				</section>
 			</section>
 
 			<section>
 				<section>
-					<h3>Results</h3>
+					<h3>Results: Video Demo</h3>
+					<video controls>
+						<source src="video/C-U-Net_Demo.mp4" type="video/mp4">
+					</video>
 				</section>
-				<section data-markdown  style="font-size: x-small">
+
+				<section>
+					<h3>Summary of results</h3>
+
+				</section>
+
+				<section data-markdown style="font-size: medium">
 					<textarea data-template>
-						|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
-						| :--- | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
-						| IRM | U | `$ 13.1\pm5.4 $` | `$ 12.7\pm6.4 $`  | n/a | `$ 11.79\pm4.26 $` | `$ 19.94\pm5.59 $` | `$ 13.02\pm4.25 $` |
-						| input mix | L | `$-3.7\pm5.7$` | `$-3.7\pm5.7$` | `$18.2\pm4.2$` | `$ -3.48\pm4.82 $` | `$ -3.20\pm4.95 $` | `$ 18.10\pm11.21 $` |
-						| No filtering | 1 | `$  -2.1\pm 6.2 $` | `$ -15.2\pm 10.0 $` | `$ -8.1\pm 5.9 $` | `$ -0.77\pm5.76 $` | `$ 0.57\pm6.85 $` | `$ 10.88\pm3.21 $` |
-						| Wiener (1 it.) | 1-W`$_1$` | `$ -3.9\pm 7.5 $` | `$ -16.0\pm 16.1 $` | `$ -15.1\pm 10.1 $` | `$ -1.01\pm6.20 $` | `$ 1.53\pm7.65 $` | `$ 7.70\pm3.81 $` |
-						| Wiener (2 it.) | 1-W`$_2$` | `$ -7.6\pm 10.7 $` | `$ -21.4\pm 24.1 $` | `$ -25.4\pm 16.8 $` | `$ -2.56\pm7.10 $` | `$ \mathbf{1.72\pm8.52} $` | `$ 4.99\pm5.62 $` |
-						| 1-W`$_2$` with CL | 2-W`$_2$` | `$ -8.2\pm 10.9 $` |  `$ -24.1\pm 25.1  $` |  `$ -26.2\pm 17.8  $` |  `$ -3.06\pm7.06  $` | <span style="color:gray">`$ 1.38\pm8.55 $`</span> | <span style="color:gray">`$ 4.59\pm5.72 $`</span>  |
-						| 2-W`$_2$` but binary masks | 3-W`$_2$` |  <span style="color:gray">`$ -9.7\pm 15.2 $`</span> | <span style="color:gray">`$ -21.6\pm 27.4 $`</span> |  `$ \mathbf{-36.2\pm 18.4}  $` |  `$ -3.82\pm7.95  $` |  `$ 0.09\pm7.10  $` |  `$ 4.93\pm7.53  $`  |
-						| 1-W`$_2$` with noise | 4-W`$_2$` |  <span style="color:gray">`$ -7.6\pm 9.2 $`</span> |  `$-21.7\pm 20.4  $` |  `$ -21.7\pm 15.6 $` |  `$ -3.12\pm6.91  $` |  `$ 0.21\pm8.34  $` |  `$ \mathbf{6.04\pm5.32} $` |
-						| 1-W`$_2$` no dB normalise | 5-W`$_2$` | `$ -10.1\pm 11.6 $` |  `$ -25.3\pm 24.9  $` |  `$ -27.0\pm 17.0  $` |  `$ -3.88\pm7.63  $` |  `$ 0.70\pm9.45  $` |  `$ 4.63\pm6.13  $` |
-						| 1-W`$_2$` linear-scale STFT | 6-W`$_2$` |  <span style="color:gray">`$\mathbf{-7.4\pm 9.9} $`</span> |  `$ \mathbf{-17.5\pm 19.8} $` |  `$ -24.4\pm 15.8  $` | <span style="color:gray">`$\mathbf{-2.27\pm6.85}$`</span> | <span style="color:gray">`$ 1.46\pm8.39 $`</span> | `$ 5.74\pm5.23 $` |
-						| 1-W`$_2$` but MHU-Net  | 7-W`$_2$` | `$ -8.1\pm9.1 $` | `$ -23.7\pm20.4 $` | `$ -20.9\pm15.8 $` | `$ -3.29\pm6.35 $` |  `$ 0.07\pm8.22 $` |  `$ 5.75\pm4.53 $` |
+					## Ablation study results
+
+					|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+					| :--- | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+					| IRM | U | `$ 13.1\pm5.4 $` | `$ 12.7\pm6.4 $`  | n/a | `$ 11.79\pm4.26 $` | `$ 19.94\pm5.59 $` | `$ 13.02\pm4.25 $` |
+					| input mix | L | `$-3.7\pm5.7$` | `$-3.7\pm5.7$` | `$18.2\pm4.2$` | `$ -3.48\pm4.82 $` | `$ -3.20\pm4.95 $` | `$ 18.10\pm11.21 $` |
+					| No filtering | 1 | `$  -2.1\pm 6.2 $` | `$ -15.2\pm 10.0 $` | `$ -8.1\pm 5.9 $` | `$ -0.77\pm5.76 $` | `$ 0.57\pm6.85 $` | `$ 10.88\pm3.21 $` |
+					| Wiener (1 it.) | 1-W`$_1$` | `$ -3.9\pm 7.5 $` | `$ -16.0\pm 16.1 $` | `$ -15.1\pm 10.1 $` | `$ -1.01\pm6.20 $` | `$ 1.53\pm7.65 $` | `$ 7.70\pm3.81 $` |
+					| Wiener (2 it.) | 1-W`$_2$` | `$ -7.6\pm 10.7 $` | `$ -21.4\pm 24.1 $` | `$ -25.4\pm 16.8 $` | `$ -2.56\pm7.10 $` | `$ \mathbf{1.72\pm8.52} $` | `$ 4.99\pm5.62 $` |
+					| 1-W`$_2$` with CL | 2-W`$_2$` | `$ -8.2\pm 10.9 $` |  `$ -24.1\pm 25.1  $` |  `$ -26.2\pm 17.8  $` |  `$ -3.06\pm7.06  $` | <span style="color:gray">`$ 1.38\pm8.55 $`</span> | <span style="color:gray">`$ 4.59\pm5.72 $`</span>  |
+					| 2-W`$_2$` but binary masks | 3-W`$_2$` |  <span style="color:gray">`$ -9.7\pm 15.2 $`</span> | <span style="color:gray">`$ -21.6\pm 27.4 $`</span> |  `$ \mathbf{-36.2\pm 18.4}  $` |  `$ -3.82\pm7.95  $` |  `$ 0.09\pm7.10  $` |  `$ 4.93\pm7.53  $`  |
+					| 1-W`$_2$` with noise | 4-W`$_2$` |  <span style="color:gray">`$ -7.6\pm 9.2 $`</span> |  `$-21.7\pm 20.4  $` |  `$ -21.7\pm 15.6 $` |  `$ -3.12\pm6.91  $` |  `$ 0.21\pm8.34  $` |  `$ \mathbf{6.04\pm5.32} $` |
+					| 1-W`$_2$` no dB normalise | 5-W`$_2$` | `$ -10.1\pm 11.6 $` |  `$ -25.3\pm 24.9  $` |  `$ -27.0\pm 17.0  $` |  `$ -3.88\pm7.63  $` |  `$ 0.70\pm9.45  $` |  `$ 4.63\pm6.13  $` |
+					| 1-W`$_2$` linear-scale STFT | 6-W`$_2$` |  <span style="color:gray">`$\mathbf{-7.4\pm 9.9} $`</span> |  `$ \mathbf{-17.5\pm 19.8} $` |  `$ -24.4\pm 15.8  $` | <span style="color:gray">`$\mathbf{-2.27\pm6.85}$`</span> | <span style="color:gray">`$ 1.46\pm8.39 $`</span> | `$ 5.74\pm5.23 $` |
+					| 1-W`$_2$` but MHU-Net  | 7-W`$_2$` | `$ -8.1\pm9.1 $` | `$ -23.7\pm20.4 $` | `$ -20.9\pm15.8 $` | `$ -3.29\pm6.35 $` |  `$ 0.07\pm8.22 $` |  `$ 5.75\pm4.53 $` |
 					</textarea>
 				</section>
 
-				<section data-markdown  style="font-size: x-small">
+				<section data-markdown  style="font-size: medium">
 					<textarea data-template>
-						|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
-						| :--- | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
-						| w/o conditioning | 6-W`$_2$` | `$ -7.4\pm 9.9 $` | `$ -17.5\pm 19.8 $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ 1.46\pm8.39 $` | `$ 5.74\pm5.23 $` |
-						| FiLM-bottleneck | 8-W`$_2$` | `$ -8.1\pm9.4 $` | `$ -19.1\pm18.1 $` | `$ -19.5\pm15.3 $` | `$ -2.77\pm6.64 $` | <span style="color:gray">`$ 1.17\pm8.24 $`</span> | <span style="color:gray">`$ 4.95\pm4.84 $`</span> |
-						| FiLM-encoder | 9-W`$_2$` | `$ \mathbf{-3.5\pm6.1} $` | `$ -20.7\pm6.7 $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
-						| FiLM-final | 10-W`$_2$` | `$ -10.1\pm11.7 $` | `$ -34.5\pm28.4 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
-						| Label-multiply | 11-W`$_2$` | <span style="color:gray">`$ -7.2\pm9.8 $`</span> | <span style="color:gray">`$ \mathbf{-15.3\pm15.5 }$`</span> | `$ -18.6\pm20.3 $` | `$ -1.86\pm6.84 $` | `$ \mathbf{2.36\pm8.80} $` | `$ 5.13\pm4.07 $` |
+					## Label conditioning results
+
+					|Method | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+					| :--- | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+					| w/o conditioning | 6-W`$_2$` | `$ -7.4\pm 9.9 $` | `$ -17.5\pm 19.8 $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ 1.46\pm8.39 $` | `$ 5.74\pm5.23 $` |
+					| FiLM-bottleneck | 8-W`$_2$` | `$ -8.1\pm9.4 $` | `$ -19.1\pm18.1 $` | `$ -19.5\pm15.3 $` | `$ -2.77\pm6.64 $` | <span style="color:gray">`$ 1.17\pm8.24 $`</span> | <span style="color:gray">`$ 4.95\pm4.84 $`</span> |
+					| FiLM-encoder | 9-W`$_2$` | `$ \mathbf{-3.5\pm6.1} $` | `$ -20.7\pm6.7 $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
+					| FiLM-final | 10-W`$_2$` | `$ -10.1\pm11.7 $` | `$ -34.5\pm28.4 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
+					| Label-multiply | 11-W`$_2$` | <span style="color:gray">`$ -7.2\pm9.8 $`</span> | <span style="color:gray">`$ \mathbf{-15.3\pm15.5 }$`</span> | `$ -18.6\pm20.3 $` | `$ -1.86\pm6.84 $` | `$ \mathbf{2.36\pm8.80} $` | `$ 5.13\pm4.07 $` |
 					</textarea>
 				</section>
 
-				<section data-markdown  style="font-size: x-small">
+				<section data-markdown  style="font-size: medium">
 					<textarea data-template>
-						|Method | Frames | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
-						| :--- | :---: | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
-						|w/o conditioning | 0 | 6-W`$_2$` | `$ -7.4\pm 9.9 $` | `$ \mathbf{-17.5\pm 19.8} $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ \mathbf{1.46\pm8.39} $` | `$ 5.74\pm5.23 $` |
-						|FiLM-encoder | 1 | 12-W`$_2$` | `$ -8.3\pm8.9 $` | `$ -26.1\pm17.5 $` | `$ -12.2\pm13.4 $` | `$ -3.38\pm5.54 $` | `$ -0.69\pm6.60 $` | `$ 5.91\pm4.25 $`  |
-						|FiLM-bottleneck | 1 | 17-W`$_2$` | `$ -8.7\pm10.8 $` | `$ -20.7\pm20.1 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
-						|FiLM-final | 1 | 18-W`$_2$` | `$ -4.8\pm7.4 $` | `$ -18.4\pm13.5 $` | `$ -10.9\pm8.7 $` | <span style="color:gray">`$ -2.24\pm6.22 $`</span> | `$ 0.05\pm7.91 $` | `$ 8.87\pm4.90 $` |
-						|Final-multiply | 1 | 16-W`$_2$` | `${-4.1\pm7.2}$` | `$ -19.0\pm13.9 $` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
-						|FiLM-final-lstm | 5 | 13-W`$_2$` | `$ \mathbf{-3.8\pm6.3} $` | `$ -22.7\pm12.6 $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
-						|FiLM-bottleneck-lstm | 5 | 14-W`$_2$` | `$ -4.7\pm6.9 $` | `$ -17.9\pm10.7 $` | `$ -10.3\pm12.7 $` | `$ -1.55\pm5.94 $` | `$ 1.02\pm7.96 $` | `$ 7.90\pm3.27 $` |
-						|FiLM-bottleneck-mp | 5 | 15-W`$_2$` | `$ -7.0\pm7.8 $` | `$ -23.0\pm14.4 $` | `$ -12.1\pm15.0 $` | `$ -2.46\pm5.82 $` | `$ 0.54\pm7.66 $` | `$ 6.28\pm3.61 $` |
-						|SoP-unet7 | 3 | 19 | `$-18.7\pm8.9$` | `$-21.1\pm9.4$` | n/a | `$-3.76\pm4.00$` | `$-1.45\pm4.68$` | `$7.56\pm3.13$` |
-						|SoP-unet7-ft | 3 | 20 | `$-17.5\pm8.5$` | `$-20.3\pm9.3$` | n/a | `$-2.57\pm4.99$` | `$0.47\pm6.43$` | `$6.89\pm2.48$` |
-						|SoP-unet5-Solos | 3 | 21 | `$-16.9\pm8.6$` | `$-18.7\pm8.9$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
+					## Visual conditioning results
+
+					|Method | Frames | ID | SI-SDR `$\uparrow$` | SD-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+					| :--- | :---: | :-----: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |
+					|w/o conditioning | 0 | 6-W`$_2$` | `$ -7.4\pm 9.9 $` | `$ \mathbf{-17.5\pm 19.8} $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ \mathbf{1.46\pm8.39} $` | `$ 5.74\pm5.23 $` |
+					|FiLM-encoder | 1 | 12-W`$_2$` | `$ -8.3\pm8.9 $` | `$ -26.1\pm17.5 $` | `$ -12.2\pm13.4 $` | `$ -3.38\pm5.54 $` | `$ -0.69\pm6.60 $` | `$ 5.91\pm4.25 $`  |
+					|FiLM-bottleneck | 1 | 17-W`$_2$` | `$ -8.7\pm10.8 $` | `$ -20.7\pm20.1 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
+					|FiLM-final | 1 | 18-W`$_2$` | `$ -4.8\pm7.4 $` | `$ -18.4\pm13.5 $` | `$ -10.9\pm8.7 $` | <span style="color:gray">`$ -2.24\pm6.22 $`</span> | `$ 0.05\pm7.91 $` | `$ 8.87\pm4.90 $` |
+					|Final-multiply | 1 | 16-W`$_2$` | `${-4.1\pm7.2}$` | `$ -19.0\pm13.9 $` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
+					|FiLM-final-lstm | 5 | 13-W`$_2$` | `$ \mathbf{-3.8\pm6.3} $` | `$ -22.7\pm12.6 $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
+					|FiLM-bottleneck-lstm | 5 | 14-W`$_2$` | `$ -4.7\pm6.9 $` | `$ -17.9\pm10.7 $` | `$ -10.3\pm12.7 $` | `$ -1.55\pm5.94 $` | `$ 1.02\pm7.96 $` | `$ 7.90\pm3.27 $` |
+					|FiLM-bottleneck-mp | 5 | 15-W`$_2$` | `$ -7.0\pm7.8 $` | `$ -23.0\pm14.4 $` | `$ -12.1\pm15.0 $` | `$ -2.46\pm5.82 $` | `$ 0.54\pm7.66 $` | `$ 6.28\pm3.61 $` |
+					|SoP-unet7 | 3 | 19 | `$-18.7\pm8.9$` | `$-21.1\pm9.4$` | n/a | `$-3.76\pm4.00$` | `$-1.45\pm4.68$` | `$7.56\pm3.13$` |
+					|SoP-unet7-ft | 3 | 20 | `$-17.5\pm8.5$` | `$-20.3\pm9.3$` | n/a | `$-2.57\pm4.99$` | `$0.47\pm6.43$` | `$6.89\pm2.48$` |
+					|SoP-unet5-Solos | 3 | 21 | `$-16.9\pm8.6$` | `$-18.7\pm8.9$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
 					</textarea>
 				</section>
 
