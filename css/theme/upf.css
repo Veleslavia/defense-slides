@@ -387,23 +387,21 @@ body {
 
 .reveal .progress {
   position: absolute;
-  top: 0;
-  height: 1.25vh;
+  bottom: 0;
+  height: 1vh;
   background-color: rgba(0, 0, 0, 0.2); }
 
 .reveal .footer {
   width: 100%;
-  height: 6em;
+  height: 4em;
   position: absolute;
-  top: 0px;
-  padding: 0px;
+  top: 0em;
+  padding: 0em;
   font-size: 0.5em;
-  line-height: 1.3em;
+  line-height: 0em;
   color: black;
-  background-image: url("img/upf-logo.png");
   background-repeat: no-repeat;
-  background-position: left top;
-  background-size: 150px 60px; }
+  background-position: left top;}
 
 .reveal .footer img {
   position: absolute;
@@ -412,11 +410,14 @@ body {
 
 .reveal .footer #middlebox {
   position: absolute;
-  left: 18em;
-  bottom: 3px;
+  left: 14em;
+  top: 1em;
+  bottom: 0.5em;
   width: 30em;
   height: 2em;
-  font-size: 1em; }
+  font-size: 1.2em;
+  text-align: center;
+}
 
 .no-title-footer .footer {
   opacity: 0;
@@ -463,6 +464,7 @@ body {
   table-layout: fixed;
   width: 100%;
   text-align: left; }
+
   .reveal .multiCol .col {
     display: table-cell;
     vertical-align: top;
@@ -493,11 +495,10 @@ body {
   left: -4em;
   height: 4em; }
 
-.reveal .footer img#bottom {
-  margin-left: -2.7em;
-  margin-bottom: 0.8em;
+.reveal .footer img#upf {
+  margin: 0;
   background-color: #ffffff;
-  box-shadow: 1px 1px 10px 0px gray; }
+  box-shadow: none; }
 
 .reveal li {
   types: square; }
@@ -524,8 +525,8 @@ body {
 *********************************************/
 .reveal .slide-number {
   position: absolute;
-  right: 0.4em;
-  top: 0.6em;
+  right: 2.5em;
+  bottom: 0.6em;
   color: rgba(0, 0, 0, 0.2);
   font-size: 2vmax;
   background-color: transparent;
@@ -560,6 +561,25 @@ body {
   background-color: rgb(255, 255, 255, 0.8);
 }
 
+.is-in-background #background {
+  color: #c8102e;
+}
+
+.is-in-classification #classification {
+  color: #c8102e;
+}
+
+.is-in-separation #separation {
+  color: #c8102e;
+}
+
+.is-in-conclusion #conclusion {
+  color: #c8102e;
+}
+
+.with-background #middlebox {
+  background-color: white;
+}
 
 /*
  * Copyright 2018 The Distill Template Authors

@@ -76,9 +76,10 @@
 					<h2>I - Audio-Visual MIR</h2>
 				</section>
 
-				<section>
+				<section data-state="is-in-background">
 					<aside class="notes">
 						First of all, audio-visual MIR.
+						So, what is audio-visual learning and MIR and why do we study it?
 
 						When I was 11 y.o.,
 						I somehow passed through a regional selection stage and
@@ -96,27 +97,43 @@
 						That was my first immersive experience of how highly multimodal could be our perception
 						of a music performance.
 
-						But definitely not the last one.
+						But definitely not the last one. Many years have passed, but at any life concert,
+						I watch maybe even more than I listen, especially if the scene is complex.
+						You can narrow or widen the vision area and focus on a particular aspect of the performance.
 
-						So, what is audio-visual learning and why do we study it?
-						First of all, we should care about AV methods because neither machine perception nor human
-						perception is perfect and  while machine perception is trying to mimic human perception sometimes with success,
-						many problems remain open, especially for complex scenes that involve several perception channels.
-						Music one such phenomenon, it's multimodal by nature from real-life performance to modern music videos.
-						And once we try to analize it, we focus on the following tasks:
+						We (as a kind) are very efficient in aggregating information that comes from
+						different perception channels in order to make sense of the word around us,
+						and it is still unclear how we are doing it.
+
+						And we should care about AV methods because while machine perception is trying to mimic human perception
+						often with success, many problems remain open, especially for complex scenes that involve
+						multi-sensory merging.
+
+						Within the area of MIR, there are many tasks that humans do using the full range of perception
+						capabilities and there are a number of tasks that can benifit from multi-modal approaches.
 
 					</aside>
 						<h3>Why do we study Audio-Visual MIR?</h3>
 						<ul>
 							<li class="fragment">Music is multimodal, we aim for better understanding and analysis</li>
 							<li class="fragment">Humans are very good at merging different sources of information</li>
-							<li class="fragment">Yet, ML algorithms are not as good as humans</li>
+							<li class="fragment">Yet, ML algorithms are not as good as humans at multi-sensory merging</li>
 							<li class="fragment">Various practical applications (alignment, transcription, separation, localization, tagging etc.)</li>
 						</ul>
 				</section>
 
-				<section>
+				<section data-state="is-in-background">
 					<aside class="notes">
+						Now, once we are sure that it is important and have to be adressed,
+						let us see, why it is not solved yet.
+
+						Actually, first of all, because of Pareto principal.
+						For all above tasks, audio-only based algorithms provide a good quality baseline.
+						And in order to move from an audio-only approach to a multi-modal approach,
+						there are some serious obstacles that one should overcome in order to
+						benefit from a multi-modal approach (and maybe the quality/performance boost
+						that will be obtained is not worth the effort).
+						In AV MIR (niche area) the challenges are the following.
 					</aside>
 						<h3>What are the challenges in Audio-Visual MIR?</h3>
 						<ul>
@@ -124,20 +141,41 @@
 							<li class="fragment">Low quality of available data, large diversity in data</li>
 							<li class="fragment">Dimensionality mismatch problem</li>
 							<li class="fragment">Data aggregation problem</li>
+							<li class="fragment">Extra: limited computing power</li>
 						</ul>
 				</section>
 
-				<section>
+				<section data-state="is-in-background">
+					<aside class="notes"> The primary research objective of this study is
+					to propose modern and efficient audio-visual methods for MIR problems.
+					</aside>
+					<h3> Research goals </h3>
+				</section>
+
+				<section data-state="is-in-background">
 					<aside class="notes">
-						This question is unseparable from the idea of data representation and  learned representation
+						Fro the last three points in challenges,
+
+						the answer would be strictly related to data representation
+						and  learned representation ( is unseparable from the idea )
+
+						So another question that we should ask is:.
+
 					</aside>
 					<section data-transition="none">
-						<h3>Research problem I</h3>
+						<h3>Research focus (I/II)</h3>
 						<ul>
 							<li class="question">Where can we merge different data representations?</li>
 						</ul>
 					</section>
 					<section data-transition="none">
+						<aside class="notes">There are three common and well known
+						approaches in the literature, which are used.
+
+						For early fusion we mix data representation from different perception channels as soon
+							as possible and process and optimize the mixed representation
+							in order to solve the underlying task.
+						</aside>
 						<br>
 						<h3> Early fusion </h3>
 						<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/earlyfusion.png">
@@ -163,9 +201,12 @@
 					</section>
 				</section>
 
-				<section>
+				<section data-state="is-in-background">
 						<section data-transition="none">
-						<h3>Research problem II</h3>
+							<aside class="notes">
+								The next research problem that we face is
+							</aside>
+						<h3>Research focus (II/II)</h3>
 						<ul>
 							<li class="question" style="margin-bottom: 1em">How should we merge data from different sources?</li>
 						</ul>
@@ -176,7 +217,7 @@
     							<svg viewBox="0 0 704 230" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="arrow-right" d="M 0 0 C -2.779 1 -5.376 2.445 -7.69 4.28 L -6.14 0 L -7.69 -4.28 C -5.376 -2.445 -2.779 -1 0 0 Z"></path><path id="arrow-down" d="M 0 0 C 1 2.779 2.445 5.376 4.28 7.69 L 0 6.14 L -4.28 7.69 C -2.444 5.376 -1 2.770 0 0 Z" transform="rotate(180, 0, 0)"></path><path id="column-top" d="M 0 6 a 6 6 0 0 1 6 -6 l 8 0 a 6 6 0 0 1 6 6 l 0 14 l -20 0 Z"></path><path id="column-middle" d="M 0 0 l 20 0 l 0 20 l -20 0 Z"></path><path id="column-bottom" d="M 0 0 l 20 0 l 0 14 a 6 6 0 0 1 -6 6 l -8 0 a 6 6 0 0 1 -6 -6 Z"></path></defs><text x="260" y="10" dy="1em" class="figure-text"><tspan><tspan style="font-weight: bold;">Concatenation-based conditioning</tspan></tspan><tspan x="260" dy="1.5em"> simply concatenates the conditioning </tspan><tspan x="260" dy="1.5em"> representation to the input. </tspan></text><text x="445" y="100" dy="0.4em" class="figure-text"><tspan> The result is passed </tspan><tspan x="445" dy="1.5em"> through a linear layer </tspan><tspan x="445" dy="1.5em"> to produce the output. </tspan></text><g transform="translate(10, 70)"><text x="0" y="90" dy="0.4em" class="figure-text"> input </text><g transform="translate(40, 60)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 40)" class="figure-filmed-network figure-element"></use></g><text x="191" y="-30" dy="-0.35em" style="text-anchor: end;" class="figure-text"><tspan>conditioning</tspan><tspan x="191" dy="1.5em">representation</tspan></text><g transform="translate(201, -60)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-film-generator figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 40)" class="figure-film-generator figure-element"></use></g><g transform="translate(191, 30)"><rect width="40" height="120" class="figure-element figure-box"></rect><text x="20" y="60" dy="0.4em" style="text-anchor: middle;" transform="rotate(-90, 20, 60)" class="figure-text">concatenate</text></g><g transform="translate(302, 30)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-film-generator figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 60)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 80)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 100)" class="figure-filmed-network figure-element"></use></g><g transform="translate(380, 30)"><rect width="40" height="120" class="figure-element figure-box"></rect><text x="20" y="60" dy="0.4em" style="text-anchor: middle;" transform="rotate(-90, 20, 60)" class="figure-text">linear</text></g><g transform="translate(570, 50)"><use xlink:href="#column-top" transform="translate(0, 0)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 20)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-middle" transform="translate(0, 40)" class="figure-filmed-network figure-element"></use><use xlink:href="#column-bottom" transform="translate(0, 60)" class="figure-filmed-network figure-element"></use></g><text x="600" y="90" dy="0.4em" class="figure-text"> output </text><path d="M 60 90 L 186 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(186, 90)" class="figure-path"></use><path d="M 231 90 L 297 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(297, 90)" class="figure-path"></use><path d="M 327 90 L 375 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(375, 90)" class="figure-path"></use><path d="M 420 90 L 565 90" class="figure-line"></path><use xlink:href="#arrow-right" transform="translate(565, 90)" class="figure-path"></use><path d="M 211 0 L 211 25" class="figure-line"></path><use xlink:href="#arrow-down" transform="translate(211, 25)" class="figure-path"></use></g></svg>
   							</figure>
 							<div class="remark">
-								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a></li>
+								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a>
 							</div>
 						</section>
 						<section data-transition="none">
@@ -192,10 +233,10 @@
 						<section data-transition="none">
 							<h3>Feature-wise Linear Modulation</h3>
 							<figure class="l-body">
-								<svg viewBox="0 0 704 510" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="arrow-right" d="M 0 0 C -2.779 1 -5.376 2.445 -7.69 4.28 L -6.14 0 L -7.69 -4.28 C -5.376 -2.445 -2.779 -1 0 0 Z"></path><path id="arrow-down" d="M 0 0 C 1 2.779 2.445 5.376 4.28 7.69 L 0 6.14 L -4.28 7.69 C -2.444 5.376 -1 2.770 0 0 Z" transform="rotate(180, 0, 0)"></path></defs><text x="0" y="20" class="figure-text"><tspan> The <tspan style="font-weight: bold;">FiLM generator</tspan> processes the conditioning information </tspan><tspan x="0" dy="1.5em"> and produces parameters that describe how the target network </tspan><tspan x="0" dy="1.5em"> should alter its computation. </tspan></text><path d="M420,10l0,510" style="stroke-width: 1px; stroke: #666; opacity: 0.15;"></path><text x="460" y="20" class="figure-text"><tspan> Here, the <tspan style="font-weight: bold;">FiLM-ed network</tspan>’s computation </tspan><tspan x="460" dy="1.5em"> is conditioned by two FiLM layers. </tspan></text><g transform="translate(0, 40)"><g transform="translate(460, 40)"><text x="150" y="425" class="figure-text">output</text><path d="M130,399L130,430" class="figure-line"></path><use x="130" y="430" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 337)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><path d="M130,305.5L130,332" class="figure-line"></path><use x="130" y="332" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 275.5)" class="film-layer"><rect width="222" height="30" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="15" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM</text></g><path d="M130,244L130,270.5" class="figure-line"></path><use x="130" y="270.5" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 182)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><path d="M130,149.5L130,177" class="figure-line"></path><use x="130" y="177" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 119.5)" class="film-layer"><rect width="222" height="30" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="15" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM</text></g><path d="M130,88L130,114.5" class="figure-line"></path><use x="130" y="114.5" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 26)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><text x="150" y="0" class="figure-text">input</text><path d="M130,-15l0,36" class="figure-line"></path><use x="130" y="21" xlink:href="#arrow-down" class="figure-path"></use></g><g transform="translate(0, 190)"><path d="M0,0l110,0" class="figure-line"></path><use x="110" y="0" xlink:href="#arrow-right" class="figure-path"></use><text x="0" y="0" dy="-0.8em" class="figure-text">conditioning</text></g><g transform="translate(115, 140)" class="film-generator"><rect width="180" height="100" class="figure-film-generator figure-group figure-box"></rect><text x="90" y="50" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM generator</text></g><g><path d="M295,175l175,0" class="figure-line"></path><use x="475" y="175" xlink:href="#arrow-right" class="figure-path"></use><text x="305" y="175" dy="-0.8em" class="figure-text">FiLM parameters</text></g><g><path d="M295,205C360,205,387.5,205,387.5,265S415,330,475,330" class="figure-line"></path><use x="475" y="330" xlink:href="#arrow-right" class="figure-path"></use></g></g></svg>
+								<svg viewBox="0 0 704 390" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path id="arrow-right" d="M 0 0 C -2.779 1 -5.376 2.445 -7.69 4.28 L -6.14 0 L -7.69 -4.28 C -5.376 -2.445 -2.779 -1 0 0 Z"></path><path id="arrow-down" d="M 0 0 C 1 2.779 2.445 5.376 4.28 7.69 L 0 6.14 L -4.28 7.69 C -2.444 5.376 -1 2.770 0 0 Z" transform="rotate(180, 0, 0)"></path></defs><text x="0" y="20" class="figure-text"><tspan> The <tspan style="font-weight: bold;">FiLM generator</tspan> processes the conditioning information </tspan><tspan x="0" dy="1.5em"> and produces parameters that describe how the target network </tspan><tspan x="0" dy="1.5em"> should alter its computation. </tspan></text><path d="M420,10l0,510" style="stroke-width: 1px; stroke: #666; opacity: 0.15;"></path><text x="460" y="20" class="figure-text"><tspan> Here, the <tspan style="font-weight: bold;">FiLM-ed network</tspan>’s computation </tspan><tspan x="460" dy="1.5em"> is conditioned by two FiLM layers. </tspan></text><g transform="translate(0, 40)"><g transform="translate(460, 40)"><text x="150" y="425" class="figure-text">output</text><path d="M130,399L130,430" class="figure-line"></path><use x="130" y="430" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 337)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><path d="M130,305.5L130,332" class="figure-line"></path><use x="130" y="332" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 275.5)" class="film-layer"><rect width="222" height="30" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="15" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM</text></g><path d="M130,244L130,270.5" class="figure-line"></path><use x="130" y="270.5" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 182)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><path d="M130,149.5L130,177" class="figure-line"></path><use x="130" y="177" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 119.5)" class="film-layer"><rect width="222" height="30" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="15" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM</text></g><path d="M130,88L130,114.5" class="figure-line"></path><use x="130" y="114.5" xlink:href="#arrow-down" class="figure-path"></use><g transform="translate(20, 26)" class="figure-faded"><rect width="222" height="62" class="figure-filmed-network figure-group figure-box"></rect><text x="111" y="31" dy="0.4em" style="text-anchor: middle;" class="figure-text">sub-network</text></g><text x="150" y="0" class="figure-text">input</text><path d="M130,-15l0,36" class="figure-line"></path><use x="130" y="21" xlink:href="#arrow-down" class="figure-path"></use></g><g transform="translate(0, 190)"><path d="M0,0l110,0" class="figure-line"></path><use x="110" y="0" xlink:href="#arrow-right" class="figure-path"></use><text x="0" y="0" dy="-0.8em" class="figure-text">conditioning</text></g><g transform="translate(115, 140)" class="film-generator"><rect width="180" height="100" class="figure-film-generator figure-group figure-box"></rect><text x="90" y="50" dy="0.4em" style="text-anchor: middle; font-weight: bold;" class="figure-text">FiLM generator</text></g><g><path d="M295,175l175,0" class="figure-line"></path><use x="475" y="175" xlink:href="#arrow-right" class="figure-path"></use><text x="305" y="175" dy="-0.8em" class="figure-text">FiLM parameters</text></g><g><path d="M295,205C360,205,387.5,205,387.5,265S415,330,475,330" class="figure-line"></path><use x="475" y="330" xlink:href="#arrow-right" class="figure-path"></use></g></g></svg>
 							</figure>
 							<div class="remark">
-								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a></li>
+								* Image courtesy: <a href="https://distill.pub/2018/feature-wise-transformations/">Dumoulin, et al., "Feature-wise transformations", Distill, 2018. </a>
 							</div>
 						</section>
 
@@ -205,16 +246,23 @@
 					<h2>II - Audio-Visual Musical Instrument Classification</h2>
 				</section>
 
-				<section>
+				<section data-state="is-in-classification">
 					<aside class="notes">
 						Video source: https://www.youtube.com/watch?v=aaxX9Ik6he0 CC0
 					</aside>
 					<h3> Problem definition </h3>
+					<video controls height="200">
+						<source src="video/classification_sample.mp4" type="video/mp4">
+					</video>
+					<img height="80" style="margin-bottom: 50px; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/classification_definition_informal.png">
+					<div class="remark" style="text-align: center; margin-top: 2em;">
+						* Video courtesy: YouTube-8M dataset, an actual training sample
+					</div>
 
-					<img height="450" style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/problem_definition_informal.png">
+
 				</section>
 
-				<section>
+				<section data-state="is-in-classification">
 					<aside class="notes">
 						For the classification setup, we have a set of objects $X \in \mathbb{R}^N$ and a set of class
 						labels $C \in \{0,1\}^K$. We are interested in predicting a final subset of
@@ -237,9 +285,9 @@
 					<h3> Formal problem definition </h3>
 
 					<ul>
-						<li class="fragment"> set of objects $ \definecolor{signal}{RGB}{18,110,213} {\color{signal} X} \in \mathbb{R}^N$,
+						<li class="fragment"> set of objects $ \definecolor{signal}{RGB}{18,110,213} {\color{signal} X} \subset \mathbb{R}^N$,
 							samples $ {\definecolor{signal}{RGB}{18,110,213} \color{signal}x}=({\color{signal} x_1, x_2, ..., x_N}) \in {\color{signal}X}$ </li>
-						<li class="fragment"> set of class labels $\definecolor{categories}{RGB}{203,23,206} {\color{categories}C} \in \{0,1\}^{\color{categories}K}$ </li>
+						<li class="fragment"> set of class labels $\definecolor{categories}{RGB}{203,23,206} {\color{categories}C} \subset \{0,1\}^{\color{categories}K}$ </li>
 						<li class="fragment"> final subset of labels $ \definecolor{classes}{RGB}{114,0,172}  \definecolor{categories}{RGB}{203,23,206}
 							{\color{classes} y } =
 							({\color{classes}y_1, y_2, ..., y_K}) \in {\color{categories} C }$ for a sample
@@ -291,20 +339,34 @@
 
 				</section>
 
-				<section>
+				<section data-state="is-in-classification">
 					<h3> First multimodal approach </h3>
 					<ul>
 						<li class="fragment"> Hybrid/Late fusion</li>
 						<li class="fragment"> Concatenation</li>
 					</ul>
-					<img class="fragment" height="300" style="margin-left: 2em; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+					<div class="fragment">
+					<p style="margin: 0; font-size: medium">Audio input
+						&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+						&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+						&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+						&emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Video input</p>
+						<img height="200" style="margin-left: 2em; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+						<p style="margin: 0; font-size: medium">
+							Audio-based CNN
+							&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+							&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+							&emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+							Video-based CNN
+						</p>
+
+					</div>
 
 				</section>
 
-
-				<section data-transition="none">
+				<section data-transition="none" data-state="is-in-classification">
 					<h3> First multimodal approach </h3>
-					<img height="200" style="margin-left: 2em; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
+					<img height="100" style="margin: 0em; border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/icmr_multimodal.png">
 
 					<div class="multiCol">
 						<div class="col fragment">
@@ -323,6 +385,7 @@
 						<div class="col fragment">
 						<ul>
 							<li> Bag-of-frames RGB</li>
+							<li>Inception V3</li>
 							<li> Number of frames: 10-100
 								<ul style="list-style:none">
 									<li> FCVID: 20-100 </li>
@@ -334,8 +397,8 @@
 						</div>
 					</div>
 
-					<blockquote class="fragment">
-						DATASETS
+					<blockquote class="fragment" style="margin: 0px auto">
+						DATASETS <br>
 						<ul>
 							<li> FCVID: Musical Performance With Instruments <br> &emsp; 12 classes, 5K videos, 260 hours </li>
 							<li> YouTube-8M: MusInstr-Normalized <br> &emsp; 46 classes, 60k videos, 4k hours </li>
@@ -344,7 +407,7 @@
 
 				</section>
 
-				<section>
+				<section data-state="is-in-classification">
 					<section data-transition="none" data-markdown>
 						<textarea data-template>
 							### Summary of results
@@ -361,7 +424,6 @@
 						</textarea>
 
 					</section>
-
 					<section data-transition="none" data-markdown>
 						<aside class="notes">Choi is smaller and have stronger regularization, stronger features </aside>
 
@@ -376,13 +438,42 @@
 							|Choi et al. / 20 frames | YT-8M | `$ \mathbf{84.69}$`| `$-0.43$` | `$-13.6$` |
 
 							<span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `${}^*$` Issues with YouTube-8M annotations &nbsp; </span> <!-- .element: class="fragment" -->
-
-							 > <!-- .element: class="fragment" --> TAKE AWAY:
-							 > multi-modal fusion is beneficial overall <br>
-							 > concatenation is not enough for controversial inputs
-
+							![piano_errors](img/piano2.png) <!-- .element: class="fragment" -->
 						</textarea>
+					</section>
+					<section data-transition="none" data-markdown>
+						<aside class="notes">Choi is smaller and have stronger regularization, stronger features </aside>
 
+							<textarea data-template>
+							### Summary of results
+
+							| Method | Dataset | F1 | `$ \Delta $` F1-A | `$ \Delta $` F1-V |
+							| :----- | -------- | -- | ---- | ----- |
+							|Xception / 50 frames | FCVID | `$ \mathbf{88.27}$` | `$-8.92$` | `$-17.04$` |
+							|Choi et al. / 50 frames | FCVID | `$87.25$` | `$-8.54$`| `$-16.02$` |
+							|Xception / 20 frames | YT-8M | `$78.95$` | <span style="background-color: #c8102e; border-radius: 5px"> &nbsp;`$+5.21$` </span> | `$-7.86$` |
+							|Choi et al. / 20 frames | YT-8M | `$ \mathbf{84.69}$`| `$-0.43$` | `$-13.6$` |
+
+							<span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `${}^*$` Issues with YouTube-8M annotations &nbsp; </span>
+							![piano_errors](img/piano3.png)
+							</textarea>
+					</section>
+					<section data-transition="none" data-markdown>
+						<aside class="notes">Choi is smaller and have stronger regularization, stronger features </aside>
+
+							<textarea data-template>
+							### Summary of results
+
+							| Method | Dataset | F1 | `$ \Delta $` F1-A | `$ \Delta $` F1-V |
+							| :----- | -------- | -- | ---- | ----- |
+							|Xception / 50 frames | FCVID | `$ \mathbf{88.27}$` | `$-8.92$` | `$-17.04$` |
+							|Choi et al. / 50 frames | FCVID | `$87.25$` | `$-8.54$`| `$-16.02$` |
+							|Xception / 20 frames | YT-8M | `$78.95$` | <span style="background-color: #c8102e; border-radius: 5px"> &nbsp;`$+5.21$` </span> | `$-7.86$` |
+							|Choi et al. / 20 frames | YT-8M | `$ \mathbf{84.69}$`| `$-0.43$` | `$-13.6$` |
+
+							<span style="background-color: #c8102e; border-radius: 5px"> &nbsp; `${}^*$` Issues with YouTube-8M annotations &nbsp; </span>
+							![piano_errors](img/piano4.png)
+							</textarea>
 					</section>
 
 					<section data-markdown>
@@ -399,7 +490,6 @@
 							| Xception + UC | 9.6M | YT-8M | 83.53 | **94.69** | 84.16 |
 						</textarea>
 					</section>
-
 					<section data-markdown>
 						<textarea data-template>
 							### Visual-only results
@@ -428,15 +518,23 @@
 							|Choi et al. @ 20 frames | YT-8M | **84.01** | **93.41** | **84.69** |
 						</textarea>
 					</section>
-
 				</section>
 
+				<section data-state="is-in-classification">
+					<h3>Summary of contributions</h3>
+					<ul>
+						<li> Proposed a new multimodal network for musical instrument classification</li>
+						<li> Demonstrated efficiency of the audio-visual approach </li>
+						<li> Shown that multi-modal fusion is beneficial overall</li>
+						<li> Concatenation might not be enough for controversial inputs </li>
+					</ul>
+				</section>
 
 				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
 					<h2>III - Audio-Visual Source Separation</h2>
 				</section>
 
-				<section>
+				<section data-state="is-in-separation">
 					<h2>Can you hear the difference?</h2>
 					<br>
 					<p>&nbsp;</p>
@@ -447,7 +545,7 @@
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
 					<div class="remark">
-						* All examples are taken from the URMP dataset: <a style="font-size: smaller;" href="https://doi.org/10.5061/dryad.ng3r749">https://doi.org/10.5061/dryad.ng3r749</a></li>
+						* All examples are taken from the URMP dataset: <a style="font-size: smaller;" href="https://doi.org/10.5061/dryad.ng3r749">https://doi.org/10.5061/dryad.ng3r749</a>
 					</div>
 
 					<aside class="notes">
@@ -461,7 +559,7 @@
 					</aside>
 				</section>
 
-				<section>
+				<section data-state="is-in-separation">
 					<p>Can you hear the difference <span style="color: orange">now?</span></p>
 					<br>
 
@@ -499,11 +597,13 @@
 
 				</section>
 
-				<section>
+				<section data-state="is-in-separation">
 					<aside class="notes"> 
 						Just keep it in mind for a little, while I'm continue to introduce the task which we're trying to solve.
-						Having a single-channel recording of a musical performance, that is to say a mixture of many possibly overlapping signals, we want to estimate their individual tracks, their sources.
-						It can be used for hearing aid, music production, music education, as a preprocessing for other analysis tasks and so on.
+						Having a single-channel recording of a musical performance, that is to say a mixture of many possibly overlapping signals,
+						we want to estimate their individual tracks, their sources.
+						It can be used for hearing aid, music production, music education, as a preprocessing for other
+						analysis tasks and so on.
 						Here is an illustration of our goal.  
 					</aside>
 
@@ -513,7 +613,7 @@
 						</video>
 				</section>
 
-				<section>
+				<section data-state="is-in-separation">
 					<aside class="notes">
 					Single channel source separation (SCSS) consists of estimating the individual sources
 						x_i given a mono mixture time-domain signal $y$ of $N$ sources:
@@ -575,13 +675,13 @@
 							<span style="color: rgb(251,0,29)"> for a model </span> that gives <br>
 							<span style="color: rgb(114,0,172)"> individual </span>
 							<span style="color: rgb(217,86,16)"> sources estimation </span>
-							<span style="color: rgb(18,110,213)">from the muxture</span>
+							<span style="color: rgb(18,110,213)">from the mixture</span>
 						</p>
 					</section>
 
 					<section data-transition="none">
 						<h3> Formal problem definition </h3>
-						<p>approaches to estimate individual sources from the muxture</p>
+						<p>approaches to estimate individual sources from the mixture</p>
 						<div class="multiCol">
 
 						<div class="col fragment" style="text-align: center">
@@ -657,11 +757,23 @@
 					</div>
 
 					</section>
+					<section data-transition="none">
+						<h3>Metrics</h3>
+						<ul>
+							<li class="fragment">Source to Distortion Ratio (SDR)</li>
+							<li class="fragment">Source to Inferences Ratio (SIR)</li>
+							<li class="fragment">Sources to Artifacts Ratio (SAR)</li>
+							<li class="fragment">Scale-Independent Source to Distortion Ratio (SI-SIR)</li>
+							<li class="fragment">Scale-Dependent Source to Distortion Ratio (SD-SIR)</li>
+							<li class="fragment">Predicted Energy at Silence (PES)</li>
+
+						</ul>
+
+					</section>
+
 				</section>
 
-
-
-				<section>
+				<section data-state="is-in-separation">
 					<aside class="notes"> 
 						Now I would like to shortly discuss the common approach to solve this problem and why it is difficult to solve.
 						One of the problems is that sources often overlap and time and frequency. It's especially true for instruments playing in harmony and in unison, this is often the case for classical music. And this is also a problem for instruments of the same family, since they have very similar timbre as well. 
@@ -684,7 +796,9 @@
 							<li class="fragment">Unknown in advance number of sources</li>
 							<li class="fragment">Complexity increases with the number of sources</li>
 							<li class="fragment">Overlap in time and frequency between sources</li>
+							<!--
 							<li class="fragment">Extra: inter-family mimicry for some instruments (clarinet vs. viola)</li>
+							-->
 						</ul>
 						<br>
 						<br>
@@ -695,7 +809,7 @@
 					</section>
 				</section>
 
-				<section data-transition="none">
+				<section data-transition="none" data-state="is-in-separation">
 					<aside class="notes"> 
 						Let me briefly explain the architecture.
 						Overall, in deep learning based source separation, there is a huge variety of architecture design. 
@@ -735,7 +849,7 @@
 					</section>
 				</section>
 
-				<section> 
+				<section data-state="is-in-separation">
 					<aside class="notes"> 
 						This was trained with a simple MSE loss between original and reconstructed sources, it was trained on a multi-modal dataset of music performances from Rochester university, which is relatively small and has its issues. 
 						So, just a disclaimer, the results which I'm going to show you now are results of the network which has been trained with 30 videos which is about 1,5h in total.
@@ -744,7 +858,7 @@
 						<h3> Experiments </h3>
 					</section>
 
-					<section data-background-image="img/creation_process.png" data-state="no-title-footer" data-background-opacity="0.2" data-background-size="contain">
+					<section data-background-image="img/creation_process.png" data-background-opacity="0.2" data-background-size="contain">
 						<h4 class="fragment" data-fragment-index="1">URMP <a href="https://doi.org/10.5061/dryad.ng3r749">Dataset</a></h4>
 						<ul class="fragment" data-fragment-index="2" style="background-color: rgba(255, 255, 255, 0.7)">
 							<li class="fragment" data-fragment-index="2">13 instruments</li>
@@ -765,7 +879,9 @@
 
 					<section>
 						<aside class="notes"> 
-							We compared our method with InformedNMF approch, which was the closest method able to separate sounds of different instruments and it uses pretrained timbre models. And, surprisingly, our method performs better in SIR.
+							We compared our method with InformedNMF approch, which was the closest method able to
+							separate sounds of different instruments and it uses pretrained timbre models. And,
+							surprisingly, our method performs better in SIR.
 						</aside>
 
 						<h3>Summary of results</h3>
@@ -840,7 +956,7 @@
 				</section>
 			</section>
 
-			<section>
+			<section data-state="is-in-separation">
 				<p>What we did next...</p>
 
 				<!--
@@ -850,19 +966,19 @@
 				-->
 			</section>
 
-			<section data-background-image="img/spreadsheet.png" data-state="no-title-footer" data-background-opacity="0.2" data-background-size="cover">
+			<section data-background-image="img/spreadsheet.png" data-background-opacity="0.2" data-background-size="contain" data-state="is-in-separation with-background">
 				<h3 style="background-color: rgba(255, 255, 255, 0.7); margin-bottom: 0em;"> SOLOS </h3>
-				<div class="remark" style="text-align: center; background-color: rgba(255, 255, 255, 0.7); margin-bottom: 2em;">
-					* Joint work with Juan Montesinos <a href="https://juanmontesinos.com/Solos">https://juanmontesinos.com/Solos</a></li>
+				<div class="remark" style="text-align: center; background-color: rgba(255, 255, 255, 1); margin-bottom: 2em;">
+					* Joint work with Juan Montesinos <a href="https://juanmontesinos.com/Solos">https://juanmontesinos.com/Solos</a>
 				</div>
 
 				<ul>
-					<li class="fragment" data-fragment-index="1" style="background-color: rgba(255, 255, 255, 0.7)">13 instruments matching the URMP dataset</li>
-					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Only solo performances / auditions </li>
-					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Semi-automatic and manual quality control </li>
-					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Mix-and-separate approach</li>
-					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">755 individual recordings </li>
-					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Extra: valid timestamps and skeletons  </li>
+					<li class="fragment" data-fragment-index="1" style="background-color: rgba(255, 255, 255, 1)">13 instruments matching the URMP dataset</li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 1)">Only solo performances / auditions </li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 1)">Semi-automatic and manual quality control </li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 1)">Mix-and-separate approach</li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 1)">755 individual recordings </li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 1)">Extra: valid timestamps and skeletons  </li>
 				</ul>
 
 				<p>&nbsp;</p>
@@ -870,7 +986,7 @@
 
 			</section>
 
-			<section>
+			<section data-state="is-in-separation">
 				<section data-transition="none">
 					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
 					<h3 class="fragment" >Design Decisions</h3>
@@ -930,20 +1046,57 @@
 
 				</section>
 
-
 			</section>
 
-			<section>
-				<section>
+			<section data-state="is-in-separation">
+				<section data-transition="none">
 					<h3>Results: Video Demo</h3>
 					<video controls>
 						<source src="video/C-U-Net_Demo.mp4" type="video/mp4">
 					</video>
 				</section>
 
-				<section>
-					<h3>Summary of results</h3>
+					<section data-transition="none" data-markdown style="font-size: medium">
+						<textarea data-template>
+							### Summary of results
 
+							|Method | ID | Cond | SI-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+							| :--- | :-----: | :----: | :----: | :----: |  :----: |  :---: |  :---: |
+							| U-Net | 6 | none | `$  -2.1\pm 6.2 $` | `$ -8.1\pm 5.9 $` | `$ -0.77\pm5.76 $` | `$ 0.57\pm6.85 $` | `$ 10.88\pm3.21 $` |
+							| U-Net | 6-W`$_2$` | none | `$ -7.4\pm 9.9 $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ 1.46\pm8.39 $` | `$ 5.74\pm5.23 $` |
+							| FiLM-encoder | 9-W`$_2$` | labels | `$ \mathbf{-3.5\pm6.1} $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
+							| FiLM-final | 10-W`$_2$` | labels | `$ -10.1\pm11.7 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
+							|FiLM-bottleneck-1F | 17-W`$_2$` | visual | `$ -8.7\pm10.8 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
+							|Final-multiply-1F | 16-W`$_2$` | visual | `${-4.1\pm7.2}$` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
+							|FiLM-final-lstm-5F | 13-W`$_2$` | visual-motion | `$ \mathbf{-3.8\pm6.3} $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
+							|SoP-unet5-Solos-3F | 21 | visual| `$-16.9\pm8.6$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
+						</textarea>
+					</section>
+
+				<!--
+								|Method | ID | Cond | SI-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
+								| :--- | :-----: | :----: | :----: | :----: |  :----: |  :---: |  :---: |
+								| FiLM-bottleneck | 8-W`$_2$` | labels | `$ -8.1\pm9.4 $` | `$ -19.5\pm15.3 $` | `$ -2.77\pm6.64 $` | <span style="color:gray">`$ 1.17\pm8.24 $`</span> | <span style="color:gray">`$ 4.95\pm4.84 $`</span> |
+								| FiLM-encoder | 9-W`$_2$` | labels | `$ \mathbf{-3.5\pm6.1} $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
+								| FiLM-final | 10-W`$_2$` | labels | `$ -10.1\pm11.7 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
+								|FiLM-encoder-1F | 12-W`$_2$` | visual | `$ -8.3\pm8.9 $` | `$ -12.2\pm13.4 $` | `$ -3.38\pm5.54 $` | `$ -0.69\pm6.60 $` | `$ 5.91\pm4.25 $`  |
+								|FiLM-bottleneck-1F | 17-W`$_2$` | visual | `$ -8.7\pm10.8 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
+								|FiLM-final-1F | 18-W`$_2$` | visual | `$ -4.8\pm7.4 $` | `$ -10.9\pm8.7 $` | <span style="color:gray">`$ -2.24\pm6.22 $`</span> | `$ 0.05\pm7.91 $` | `$ 8.87\pm4.90 $` |
+								|Final-multiply-1F | 16-W`$_2$` | visual | `${-4.1\pm7.2}$` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
+								|FiLM-final-lstm-5F | 13-W`$_2$` | visual-motion | `$ \mathbf{-3.8\pm6.3} $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
+								|FiLM-bottleneck-lstm-5F | 14-W`$_2$` | visual-motion | `$ -4.7\pm6.9 $` | `$ -10.3\pm12.7 $` | `$ -1.55\pm5.94 $` | `$ 1.02\pm7.96 $` | `$ 7.90\pm3.27 $` |
+								|FiLM-bottleneck-mp-5F | 15-W`$_2$` | visual | `$ -7.0\pm7.8 $` | `$ -12.1\pm15.0 $` | `$ -2.46\pm5.82 $` | `$ 0.54\pm7.66 $` | `$ 6.28\pm3.61 $` |
+								|SoP-unet7-ft-3F | 20 | visual | `$-17.5\pm8.5$` | n/a | `$-2.57\pm4.99$` | `$0.47\pm6.43$` | `$6.89\pm2.48$` |
+								|SoP-unet5-Solos-3F | 21 | visual| `$-16.9\pm8.6$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
+				-->
+				<section data-transition="none">
+					<h3>Summary of results</h3>
+					<img height="400px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/taslp_new_pics/exp69_dtq.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>Summary of results</h3>
+					<img height="400px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/taslp_new_pics/per_instrument_metrics.png">
 				</section>
 
 				<section data-markdown style="font-size: medium">
@@ -1006,25 +1159,33 @@
 				<h2>IV - Conclusion</h2>
 			</section>
 
-			<section>
-				<h3>Research problem I</h3>
+			<section data-state="is-in-conclusion">
+				<h3>Contributions</h3>
+				<blockquote class="fragment" data-fragment-index="1"> modern and efficient audio-visual methods for MIR </blockquote>
 				<ul>
-					<li class="question">Where can we merge different data representations?</li>
-					<li class="affirmation fragment"> Late fusion and hybrid fusion for high-level concepts</li>
-					<li class="affirmation fragment"> Early fusion for continuous and strong conditioning</li>
+					<li class="fragment" data-fragment-index="2"> for MIR
+						<span class="fragment" data-fragment-index="3" style="color: #c8102e"> → classification, separation </span> </li>
+					<li class="fragment" data-fragment-index="4"> methods
+						<span class="fragment" data-fragment-index="5" style="color: #c8102e"> → data fusion, conditioning </span> </li>
+					<li class="fragment" data-fragment-index="6"> audio-visual
+						<span class="fragment" data-fragment-index="7" style="color: #c8102e"> → datasets (YouTube8m-MusInst, Solos) </span> </li>
+					<li class="fragment" data-fragment-index="8">modern and efficient
+						<span class="fragment" data-fragment-index="9" style="color: #c8102e"> → deep learning </span> </li>
 				</ul>
 			</section>
+			<section data-state="is-in-conclusion">
+				<h3>Research focus</h3>
+				<blockquote class="fragment"> Where can we merge different data representations? </blockquote>
+				<blockquote class="fragment"> How should we merge data from different sources? </blockquote>
 
-			<section>
-					<h3>Research problem II</h3>
-					<ul>
-						<li class="question">How should we merge data from different sources?</li>
-						<li class="affirmation fragment"> Strictly task-dependent</li>
-					</ul>
+				<!--
+					<li class="affirmation fragment"> Late fusion and hybrid fusion for high-level concepts</li>
+					<li class="affirmation fragment"> Early fusion for continuous and strong conditioning</li>
+					-->
 			</section>
 
-			<section>
-				<h3>Contributions</h3>
+			<section data-state="is-in-conclusion">
+				<h3>Publications</h3>
 				<div class="references">
 					<h5 style="text-align: left; margin-bottom: 0em; margin-left: 3em">Audio-Visual MIR</h5>
 					<ul style="font-size: smaller">
@@ -1079,7 +1240,15 @@
 			</section>
 			-->
 
-			<div class="footer"></div>
+			<div class="footer">
+				<img height="70px" src="img/upf-logo.png" alt="logo" class="logo" id="upf"/>
+				<div id="middlebox" style="color: rgba(0, 0, 0, 0.2)">
+					<span id="background">Background </span>|
+					<span id="classification"> Classification </span> |
+					<span id="separation">Separation </span> |
+					<span id="conclusion">Conclusion</span>
+				</div>
+			</div>
 
 			</div>
 		</div>
@@ -1116,7 +1285,9 @@
 			//history: true,
 			//center: false,
 			slideNumber: true,
+			overview: true,
 			hash: true,
+			help: true,
 			//minScale: 0.1,
 			//maxScale: 5,
 			//transition: 'none', //
@@ -1133,11 +1304,7 @@
 			},
 			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath],
 			dependencies: [
-				{ src: 'plugin/markdown/markdown.js' },
-				{ src: 'plugin/notes/notes.js', async: true },
-				{ src: 'plugin/math/math.js', async: true },
 				{ src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function () { return !!document.body.classList; } },
-				{ src: 'plugin/highlight/highlight.js', async: true }
 			]
 		});
 		</script>
