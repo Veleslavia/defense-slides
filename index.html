@@ -66,20 +66,39 @@
 				</section>
 				<section style="text-align: left">
 					<h3>Outline</h3>
-					<h2>I - State of the Art: Audio-Visual Machine Learning and MIR</h2>
+					<h2>I - Audio-Visual MIR</h2>
 					<h2>II - Audio-Visual Musical Instrument Classification </h2>
 					<h2>III - Audio-Visual Source Separation </h2>
 					<h2>IV - Conclusion</h2>
 				</section>
 
 				<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
-					<h2>I - Audio-Visual ML and MIR</h2>
+					<h2>I - Audio-Visual MIR</h2>
 				</section>
 
 				<section>
 					<aside class="notes">
-						So, what is audio-visual learning and why should you care about it? (Don't trust me, maybe we
-						should not care about it at all).
+						First of all, audio-visual MIR.
+
+						When I was 11 y.o.,
+						I somehow passed through a regional selection stage and
+						my music teacher brought me to compete to a prestigious-like
+						 musical competition in my area.
+
+						I did not proceed further but I remember the experience of whatching
+						(watching, not listening) performances of other participant,
+						especially the senior ones.
+
+						It was a feast of performance techniques, both from a technical and artistic
+						point of view, and I recall that we discussed for a couple of weeks everything
+						that we saw and tried to adapt some tricks.
+
+						That was my first immersive experience of how highly multimodal could be our perception
+						of a music performance.
+
+						But definitely not the last one.
+
+						So, what is audio-visual learning and why do we study it?
 						First of all, we should care about AV methods because neither machine perception nor human
 						perception is perfect and  while machine perception is trying to mimic human perception sometimes with success,
 						many problems remain open, especially for complex scenes that involve several perception channels.
@@ -87,7 +106,7 @@
 						And once we try to analize it, we focus on the following tasks:
 
 					</aside>
-						<h3>Why should we care about Audio-Visual MIR?</h3>
+						<h3>Why do we study Audio-Visual MIR?</h3>
 						<ul>
 							<li class="fragment">Music is multimodal, we aim for better understanding and analysis</li>
 							<li class="fragment">Humans are very good at merging different sources of information</li>
@@ -99,7 +118,7 @@
 				<section>
 					<aside class="notes">
 					</aside>
-						<h3>What are the challenges in audio-visual MIR?</h3>
+						<h3>What are the challenges in Audio-Visual MIR?</h3>
 						<ul>
 							<li class="fragment">Shortage of dedicated datasets</li>
 							<li class="fragment">Low quality of available data, large diversity in data</li>
@@ -113,7 +132,7 @@
 						This question is unseparable from the idea of data representation and  learned representation
 					</aside>
 					<section data-transition="none">
-						<h3>Research question I</h3>
+						<h3>Research problem I</h3>
 						<ul>
 							<li class="question">Where can we merge different data representations?</li>
 						</ul>
@@ -146,7 +165,7 @@
 
 				<section>
 						<section data-transition="none">
-						<h3>Research question II</h3>
+						<h3>Research problem II</h3>
 						<ul>
 							<li class="question" style="margin-bottom: 1em">How should we merge data from different sources?</li>
 						</ul>
@@ -326,7 +345,6 @@
 				</section>
 
 				<section>
-					<h3>Results</h3>
 					<section data-transition="none" data-markdown>
 						<textarea data-template>
 							### Summary of results
@@ -498,16 +516,12 @@
 				<section>
 					<aside class="notes">
 					Single channel source separation (SCSS) consists of estimating the individual sources
-						$x_i$ given a mono mixture time-domain signal $y$ of $N$ sources:
-
-					\begin{equation}
-					y(t) = \sum_{i=1}^{N} x_i(t).
-					\end{equation}
+						x_i given a mono mixture time-domain signal $y$ of $N$ sources:
 
 					Instead of predicting time-domain signals, a general approach for solving SCSS involves the
-						estimation of $N$ masks for Short-Term Fourier transform (STFT) values of the mixture.
-						In this case, we consider a time-frequency representation of the mixture $ \boldsymbol{Y} $
-						and the  sources $ \boldsymbol{X_i} $, and the goal of the source separation method is to
+						estimation of N masks for Short-Term Fourier transform (STFT) values of the mixture.
+						In this case, we consider a time-frequency representation of the mixture Y
+						and the  sources Xi, and the goal of the source separation method is to
 						learn a real-valued (or complex-valued) mask $M_i$ for each source $i$ .
 
 					Let us denote by $|\boldsymbol{X_i}(\tau, \omega)|$ and $|\boldsymbol{Y}(\tau, \omega)|$
@@ -515,69 +529,134 @@
 						at frequency $\omega$ and time frame $\tau$.
 					In this work, we only consider two types of \textit{real-valued} masks,
 						namely \textit{ideal ratio or soft} masks $M_i^{ir}$:
-					\begin{equation}
-						M_i^{ir}(\tau, \omega) = \frac{|\boldsymbol{X_i}(\tau, \omega)|}{|\boldsymbol{Y}(\tau, \omega)|},
-					\end{equation}
-					and \textit{ideal binary} masks
-					$M_i^{ib}$:
-					\begin{equation}
-					\begin{gathered}
-					M_i^{ib}(\tau, \omega) =
-						\begin{cases}
-						  1, & \text{if}\  \frac{|\boldsymbol{X_i}(\tau, \omega)|}{|\boldsymbol{Y}(\tau, \omega)| - |\boldsymbol{X_i}(\tau, \omega)|} \geq 1 \\
-						  0, & \text{otherwise},
-						\end{cases}
-					\end{gathered}
-					\end{equation}
+
 					</aside>
+					<section data-transition="none">
 					<h3> Formal problem definition </h3>
 
 					<ul>
-						<li class="fragment"> a mono mixture time-domain signal $y(t)$ </li>
-						<li class="fragment"> individual sources $x_i(t)$ </li>
+						<li class="fragment"> a mono mixture time-domain signal $\definecolor{mix}{RGB}{18,110,213} \color{mix} y(t)$ </li>
+						<li class="fragment"> individual sources $ \definecolor{gt}{RGB}{203,23,206}  \color{gt} x_i(t)$ </li>
 					</ul>
 					<p class="fragment">
-					\[
-					\definecolor{classes}{RGB}{114,0,172}
-					\definecolor{params}{RGB}{45,177,93}
-					\definecolor{model}{RGB}{251,0,29}
-					\definecolor{signal}{RGB}{18,110,213}
-					\definecolor{probability}{RGB}{217,86,16}
-					\definecolor{categories}{RGB}{203,23,206}
+							\[
+								\definecolor{loss}{RGB}{128,121,14}
+								\definecolor{predicted}{RGB}{217,86,16}
+								\definecolor{gt}{RGB}{203,23,206}
+								\definecolor{nsources}{RGB}{114,0,172}
+								\definecolor{sum}{RGB}{251,0,29}
+								\definecolor{mix}{RGB}{18,110,213}
 
-					y(t) = \sum_{i=1}^{N} x_i(t).
+								{\color{mix} y(t)} = {\color{sum} \sum_{\color{nsources}i=1}^{\color{nsources}N} {\color{gt} x_i(t)}}
 
-					\]
+							\]
 
-						the mixture equals to the sum of all sources
-
-						estimate individual sources from the muxture
-						<span style="color: rgb(45,177,93)"> find parameters</span>
-						<span style="color: rgb(251,0,29)"> for a model </span> that gives <br>
-						<span style="color: rgb(203,23,206)">class </span>
-						<span style="color: rgb(217,86,16)">estimation probabilities </span>
-						<span style="color: rgb(18,110,213)">for a sample</span>
-
+							<span style="color: rgb(18,110,213)"> the mixture </span>
+							equals <span style="color: rgb(251,0,29)">to the sum of </span>
+							<span style="color: rgb(114,0,172)"> all </span>
+							<span style="color: rgb(203,23,206)"> sources </span>
 					</p>
+					<p class="fragment">
+							\[
+								\definecolor{loss}{RGB}{128,121,14}
+								\definecolor{predicted}{RGB}{217,86,16}
+								\definecolor{nsources}{RGB}{114,0,172}
+								\definecolor{model}{RGB}{251,0,29}
+								\definecolor{gt}{RGB}{203,23,206}
+								\definecolor{mix}{RGB}{18,110,213}
+								\definecolor{param}{RGB}{45,177,93}
 
-					<div class="multiCol">
-						<div class="col fragment">
-							direct waveform estimation
-							<br>
-							<ul style="list-style:none">
-								<li >  </li>
-								<li >  </li>
-							</ul>
+								{\color{predicted} \hat{x}_{\color{nsources}i}(t)} =
+									{\color{model}f_{\color{params}\theta}^{\color{nsources}i}}({\color{mix}y(t)})
+
+							\]
+
+							<span style="color: rgb(45,177,93)"> find parameters</span>
+							<span style="color: rgb(251,0,29)"> for a model </span> that gives <br>
+							<span style="color: rgb(114,0,172)"> individual </span>
+							<span style="color: rgb(217,86,16)"> sources estimation </span>
+							<span style="color: rgb(18,110,213)">from the muxture</span>
+						</p>
+					</section>
+
+					<section data-transition="none">
+						<h3> Formal problem definition </h3>
+						<p>approaches to estimate individual sources from the muxture</p>
+						<div class="multiCol">
+
+						<div class="col fragment" style="text-align: center">
+							<h4> direct waveform estimation</h4>
+							<p>predicting time-domain signals $
+								\definecolor{nsources}{RGB}{114,0,172}
+								\definecolor{predicted}{RGB}{217,86,16}
+								\color{predicted} \hat{x}_{\color{nsources}i}(t)$</p>
+							<p class="fragment">
+							\[
+								\definecolor{nsources}{RGB}{114,0,172}
+								\definecolor{loss}{RGB}{128,121,14}
+								\definecolor{predicted}{RGB}{217,86,16}
+								\definecolor{gt}{RGB}{203,23,206}
+
+							{\color{loss} \mathcal{L}^{w} {\color{black}=} \sum_{\color{nsources}i=1}^{\color{nsources}N}
+								\sum_{j=1}^{T} ({\color{gt} x_{\color{nsources}i}(j)} -
+								{\color{predicted} \hat{x}_{\color{nsources}i}(j)})^2} \]
+
+							</p>
 						</div>
-						<div class="col fragment">
-							masking-based approach
-							<br>
-							<ul style="list-style:none">
-								<li >  </li>
-								<li >  </li>
-							</ul>
+						<div class="col fragment" style="text-align: center">
+							<h4>masking-based approach</h4>
+							<p>predicting ratio masks $
+								\definecolor{nsources}{RGB}{114,0,172}
+								\definecolor{predicted}{RGB}{217,86,16}
+								\color{predicted} \hat{M}_{\color{nsources}i}^{r} $</p>
+							<p> <span style="font-size: medium"> $ \definecolor{mix}{RGB}{18,110,213} \color{mix}
+								\boldsymbol{Y} $,
+								$ \definecolor{gt}{RGB}{203,23,206}
+								  \definecolor{nsources}{RGB}{114,0,172} \color{gt}
+									\boldsymbol{X_{\color{nsources} i}} $
+									STFT values of the mixture and sources </span> </p>
+
+							<p>	<span style="font-size: medium"> magnitude of the STFT value at frequency $\nu$ and time $\tau$ <br>
+								$\definecolor{gt}{RGB}{203,23,206}
+								 \definecolor{nsources}{RGB}{114,0,172}
+								| {\color{gt} \boldsymbol{X_{\color{nsources}i}}(\tau, \nu) } |$,
+								$\definecolor{mix}{RGB}{18,110,213}
+								| {\color{mix} \boldsymbol{Y}(\tau, \nu)}|$ </span>
+							</p>
+							<p>
+								<span style="font-size: medium"> ideal ratio mask of source $\definecolor{gt}{RGB}{203,23,206}
+								 \definecolor{nsources}{RGB}{114,0,172}
+								| {\color{gt} \boldsymbol{X_{\color{nsources}i}}(\tau, \nu) } |$
+
+								\[	\definecolor{gt}{RGB}{203,23,206}
+									\definecolor{nsources}{RGB}{114,0,172}
+									\definecolor{mix}{RGB}{18,110,213}
+									\definecolor{predicted}{RGB}{217,86,16}
+
+									{\color{predicted} \hat{M}_{\color{nsources}i}^{r}} =
+
+									\frac{|{\color{gt} \boldsymbol{X_{\color{nsources}i}}(\tau, \nu) } |}{|{\color{mix} \boldsymbol{Y}(\tau, \nu)}|}
+								\]</span>
+							</p>
+
+							<p class="fragment">
+							\[
+
+							\definecolor{loss}{RGB}{128,121,14}
+							\definecolor{nsources}{RGB}{114,0,172}
+							\definecolor{predicted}{RGB}{217,86,16}
+							\definecolor{gt}{RGB}{203,23,206}
+
+							{\color{loss} \mathcal{L}^{r} {\color{black}=} \sum_{\color{nsources}i=1}^{\color{nsources}N} \sum_{j=1}^{|(\tau, \nu)|}
+								({\color{gt} M_{\color{nsources}i}^{ir}(j)} -
+								{\color{predicted} \hat{M}_{\color{nsources}i}^{r}(j)})^2} \]
+
+						</p>
+
 						</div>
 					</div>
+
+					</section>
 				</section>
 
 
@@ -661,16 +740,18 @@
 						This was trained with a simple MSE loss between original and reconstructed sources, it was trained on a multi-modal dataset of music performances from Rochester university, which is relatively small and has its issues. 
 						So, just a disclaimer, the results which I'm going to show you now are results of the network which has been trained with 30 videos which is about 1,5h in total.
 					</aside>
-
 					<section>
 						<h3> Experiments </h3>
-						<h4 class="fragment">URMP Dataset <a style="font-size: smaller;" href="https://doi.org/10.5061/dryad.ng3r749">https://doi.org/10.5061/dryad.ng3r749</a></h4>
-						<ul class="fragment">
-							<li>13 instruments</li>
-							<li>44 videos -> 40 valid pieces </li>
-							<li>12 duest, 20 trios, 8 quartets </li>
-							<li>87 unique audio tracks </li>
-							<li>Train/Test split: 30/10 pieces </li>
+					</section>
+
+					<section data-background-image="img/creation_process.png" data-state="no-title-footer" data-background-opacity="0.2" data-background-size="contain">
+						<h4 class="fragment" data-fragment-index="1">URMP <a href="https://doi.org/10.5061/dryad.ng3r749">Dataset</a></h4>
+						<ul class="fragment" data-fragment-index="2" style="background-color: rgba(255, 255, 255, 0.7)">
+							<li class="fragment" data-fragment-index="2">13 instruments</li>
+							<li class="fragment">44 videos -> 40 valid pieces </li>
+							<li class="fragment">12 duest, 20 trios, 8 quartets </li>
+							<li class="fragment">87 unique audio tracks </li>
+							<li class="fragment">Train/Test split: 30/10 pieces </li>
 						</ul>
 
 					</section>
@@ -769,22 +850,23 @@
 				-->
 			</section>
 
-			<section>
-				<h3> SOLOS </h3>
+			<section data-background-image="img/spreadsheet.png" data-state="no-title-footer" data-background-opacity="0.2" data-background-size="cover">
+				<h3 style="background-color: rgba(255, 255, 255, 0.7); margin-bottom: 0em;"> SOLOS </h3>
+				<div class="remark" style="text-align: center; background-color: rgba(255, 255, 255, 0.7); margin-bottom: 2em;">
+					* Joint work with Juan Montesinos <a href="https://juanmontesinos.com/Solos">https://juanmontesinos.com/Solos</a></li>
+				</div>
+
 				<ul>
-					<li class="fragment" data-fragment-index="1">13 instruments matching the URMP dataset</li>
-					<li class="fragment" >Only solo performances </li>
-					<li class="fragment" >Semi-automatic and manual quality control </li>
-					<li class="fragment" >Mix-and-separate approach</li>
-					<li class="fragment" >755 individual recordings </li>
-					<li class="fragment" >Extra: valid timestamps and skeletons  </li>
+					<li class="fragment" data-fragment-index="1" style="background-color: rgba(255, 255, 255, 0.7)">13 instruments matching the URMP dataset</li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Only solo performances / auditions </li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Semi-automatic and manual quality control </li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Mix-and-separate approach</li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">755 individual recordings </li>
+					<li class="fragment" style="background-color: rgba(255, 255, 255, 0.7)">Extra: valid timestamps and skeletons  </li>
 				</ul>
 
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
-				<div class="remark fragment" data-fragment-index="1">
-					* Joint work with Juan Montesinos <a style="font-size: smaller;" href="https://juanmontesinos.com/Solos">https://juanmontesinos.com/Solos</a></li>
-				</div>
 
 			</section>
 
@@ -797,8 +879,58 @@
 				<section data-transition="none">
 					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
 					<h3>Design Decisions</h3>
+						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/params_baseline.svg">
+				</section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<h3>Design Decisions</h3>
 						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/params_final.svg">
 				</section>
+				<section data-transition="none">
+					<h3> Conditioned <strike>Wave-</strike>U-Net Architecture </h3>
+					<h3>Design Decisions</h3>
+						<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/params_final_data.svg">
+				</section>
+
+				<section data-transition="none">
+					<h3>Context vectors</h3>
+					<div class="multiCol">
+						<div class="col fragment">
+							<h5>Label conditioning</h5>
+							<img data-src="img/cv_binary.png" height="300px" style="border:1px solid #555a5f">
+						</div>
+						<div class="col fragment">
+							<h5>Visual conditioning</h5>
+							<img data-src="img/cv_visual.png" height="300px" style="border:1px solid #555a5f">
+						</div>
+						<div class="col fragment">
+							<h5>Visual-motion conditioning</h5>
+							<img data-src="img/cv_motion.png" height="300px" style="border:1px solid #555a5f">
+						</div>
+					</div>
+				</section>
+
+				<section data-transition="none">
+					<h3>Design Decisions</h3>
+					<img style="border:0; box-shadow: 0px 0px 0px #ffffff;" data-src="img/params_final_conditioning.svg">
+				</section>
+
+				<section data-transition="none">
+					<h3>Conditioning Design</h3>
+					<div class="multiCol">
+						<div class="col fragment">
+							<h5>FiLM conditioning</h5>
+							<img height="300px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/cunet_conditioning_film.png">
+						</div>
+						<div class="col fragment">
+							<h5>Multiplicative conditioning</h5>
+							<img height="300px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/cunet_conditioning_multiply.png">
+						</div>
+					</div>
+
+				</section>
+
+
 			</section>
 
 			<section>
@@ -875,32 +1007,55 @@
 			</section>
 
 			<section>
-				<h3>Research question I</h3>
+				<h3>Research problem I</h3>
 				<ul>
 					<li class="question">Where can we merge different data representations?</li>
+					<li class="affirmation fragment"> Late fusion and hybrid fusion for high-level concepts</li>
+					<li class="affirmation fragment"> Early fusion for continuous and strong conditioning</li>
 				</ul>
 			</section>
 
 			<section>
-					<h3>Research question II</h3>
+					<h3>Research problem II</h3>
 					<ul>
 						<li class="question">How should we merge data from different sources?</li>
+						<li class="affirmation fragment"> Strictly task-dependent</li>
 					</ul>
 			</section>
 
 			<section>
 				<h3>Contributions</h3>
 				<div class="references">
-				<ul>
-					<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (SMC, 2016) Automatic musical instrument recognition in audiovisual recordings by combining image and audio classification strategies.</li>
-					<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ACM ICMR, 2017) Musical instrument recognition in user-generated videos using a multimodal convolutional neural network architecture.</li>
-					<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ISMIR-LBD, 2017) Correspondence between audio and visual deep models for musical instrument detection in video recordings.</li>
-					<li style="font-weight: bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ICML-ML4M, 2018) A Case Study of Deep-Learned Activations via Hand-Crafted Audio Features.</li>
-					<li style="font-weight: bold;">O. Slizovskaia, L. Kim, E. Gómez, and G. Haro. (ICASSP, 2019) End-to-end sound source separation conditioned on instrument labels.</li>
-					<li>J.F. Montesinos, O. Slizovskaia, and G. Haro. (IEEE MMSP, 2020) Solos: A Dataset for Audio-Visual Music Analysis.</li>
-					<li>D. Michelsanti, O. Slizovskaia, G. Haro, E. Gómez, Z.H. Tan, and J.Jensen. (INTERSPEECH, 2020) Vocoder-Based Speech Synthesis from Silent Videos. </li>
-					<li style="font-weight: bold;">O. Slizovskaia, G. Haro and E. Gómez. (IEEE/ACM TASLP, 2020) Conditioned Source Separation for Musical Instrument Performances (Under review).</li>
-				</ul>
+					<h5 style="text-align: left; margin-bottom: 0em; margin-left: 3em">Audio-Visual MIR</h5>
+					<ul style="font-size: smaller">
+						<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (SMC, 2016) Automatic musical instrument recognition in audiovisual recordings by combining image and audio classification strategies.
+							<br> &emsp; <span style="color: #c8102e"><a>https://github.com/Veleslavia/SMC2016</a></span>
+						</li>
+						<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ACM ICMR, 2017) Musical instrument recognition in user-generated videos using a multimodal convolutional neural network architecture.
+							<br> &emsp; <span style="color: #c8102e"><a>https://github.com/Veleslavia/ICMR2017</a></span>
+						</li>
+						<li style="font-weight:bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ISMIR-LBD, 2017) Correspondence between audio and visual deep models for musical instrument detection in video recordings.</li>
+						<li style="font-weight: bold;">O. Slizovskaia, E. Gómez, and G. Haro. (ICML-ML4M, 2018) A Case Study of Deep-Learned Activations via Hand-Crafted Audio Features.</li>
+						<li style="font-weight: bold;">O. Slizovskaia, L. Kim, E. Gómez, and G. Haro. (ICASSP, 2019) End-to-end sound source separation conditioned on instrument labels.
+							<br> &emsp; <span style="color: #c8102e"><a>https://github.com/Veleslavia/vimss</a></span>
+						</li>
+						<li>J.F. Montesinos, O. Slizovskaia, and G. Haro. (IEEE MMSP, 2020) Solos: A Dataset for Audio-Visual Music Analysis.
+							<br> &emsp; <span style="color: #c8102e"><a>https://github.com/JuanFMontesinos/Solos</a></span>
+						</li>
+						<li style="font-weight: bold;">O. Slizovskaia, G. Haro and E. Gómez. (IEEE/ACM TASLP, 2020) Conditioned Source Separation for Musical Instrument Performances (under review after major changes).
+							<br> &emsp; <span style="color: #c8102e"><a>https://github.com/Veleslavia/conditioned-u-net</a></span>
+						</li>
+					</ul>
+					<h5 style="text-align: left; margin-top: 1em; margin-bottom: 0em; margin-left: 3em">Collaborations</h5>
+					<ul style="font-size: smaller">
+						<li>J. Pons, O. Slizovskaia, R. Gong, E Gómez, X. Serra. (EUSIPCO, 2017) Timbre analysis of music audio signals with convolutional neural networks.
+							<br> &emsp; <span style="color: #c8102e"><a>https://github.com/Veleslavia/EUSIPCO2017</a></span>
+						</li>
+						<li>E. Fonseca, R. Gong, D. Bogdanov, O. Slizovskaia, E. Gómez, X. Serra. (DCASE, 2017) Acoustic scene classification by ensembling gradient boosting machine and convolutional neural networks. </li>
+						<li>R. Gong, E. Fonseca, D. Bogdanov, O. Slizovskaia, E. Gómez, X. Serra. (DCASE, 2017) Acoustic scene classification by fusing LightGBM and VGG-net multichannel predictions. </li>
+						<li>J. Serrà, D. Álvarez, V. Gómez, O. Slizovskaia, J.F. Núñez, and J. Luque. (ICLR, 2020) Input complexity and out-of-distribution detection with likelihood-based generative models. </li>
+						<li>D. Michelsanti, O. Slizovskaia, G. Haro, E. Gómez, Z.H. Tan, and J. Jensen. (INTERSPEECH, 2020) Vocoder-Based Speech Synthesis from Silent Videos. </li>
+					</ul>
 				</div>
 			</section>
 
