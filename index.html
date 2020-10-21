@@ -76,7 +76,8 @@
 					<h2>I - Audio-Visual MIR</h2>
 				</section>
 
-				<section data-state="is-in-background">
+				<section class="cover" data-background="img/olga_bayan_box.gif"
+				data-state="is-in-background no-progressbar" data-background-opacity="0.05">
 					<aside class="notes">
 						First of all, audio-visual MIR.
 						So, what is audio-visual learning and MIR and why do we study it?
@@ -114,11 +115,19 @@
 
 					</aside>
 						<h3>Why do we study Audio-Visual MIR?</h3>
-						<ul>
+						<ul style="color: black">
 							<li class="fragment">Music is multimodal, we aim for better understanding and analysis</li>
 							<li class="fragment">Humans are very good at merging different sources of information</li>
 							<li class="fragment">Yet, ML algorithms are not as good as humans at multi-sensory merging</li>
-							<li class="fragment">Various practical applications (alignment, transcription, separation, localization, tagging etc.)</li>
+							<li class="fragment">Various practical applications
+								<ul style="list-style:none">
+									<li>alignment</li>
+									<li>transcription</li>
+									<li>separation</li>
+									<li>localization</li>
+									<li>tagging</li>
+								</ul>
+							</li>
 						</ul>
 				</section>
 
@@ -150,6 +159,8 @@
 					to propose modern and efficient audio-visual methods for MIR problems.
 					</aside>
 					<h3> Research goals </h3>
+					<blockquote class="fragment" data-fragment-index="1"> modern and efficient audio-visual methods for MIR </blockquote>
+
 				</section>
 
 				<section data-state="is-in-background">
@@ -418,6 +429,8 @@
 							|Choi et al. / 50 frames | FCVID | `$87.25$` | `$-8.54$`| `$-16.02$` |
 							|Xception / 20 frames | YT-8M | `$78.95$` | `$+5.21$` | `$-7.86$` |
 							|Choi et al. / 20 frames | YT-8M | `$ \mathbf{84.69}$`| `$-0.43$` | `$-13.6$` |
+
+							<span style="text-align: left; font-size: medium"> *evaluation metric: F1-measure </span>
 
 							 > <!-- .element: class="fragment" --> comparing Xception and Choi et al. as they perform compatible as audio-only models
 
@@ -747,7 +760,7 @@
 							\definecolor{predicted}{RGB}{217,86,16}
 							\definecolor{gt}{RGB}{203,23,206}
 
-							{\color{loss} \mathcal{L}^{r} {\color{black}=} \sum_{\color{nsources}i=1}^{\color{nsources}N} \sum_{j=1}^{|(\tau, \nu)|}
+							{\color{loss} \mathcal{L}^{r} {\color{black}=} \sum_{\color{nsources}i=1}^{\color{nsources}N} \sum_{j=1}^{|T \times F |}
 								({\color{gt} M_{\color{nsources}i}^{ir}(j)} -
 								{\color{predicted} \hat{M}_{\color{nsources}i}^{r}(j)})^2} \]
 
@@ -1049,12 +1062,6 @@
 			</section>
 
 			<section data-state="is-in-separation">
-				<section data-transition="none">
-					<h3>Results: Video Demo</h3>
-					<video controls>
-						<source src="video/C-U-Net_Demo.mp4" type="video/mp4">
-					</video>
-				</section>
 
 					<section data-transition="none" data-markdown style="font-size: medium">
 						<textarea data-template>
@@ -1062,41 +1069,32 @@
 
 							|Method | ID | Cond | SI-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
 							| :--- | :-----: | :----: | :----: | :----: |  :----: |  :---: |  :---: |
-							| U-Net | 6 | none | `$  -2.1\pm 6.2 $` | `$ -8.1\pm 5.9 $` | `$ -0.77\pm5.76 $` | `$ 0.57\pm6.85 $` | `$ 10.88\pm3.21 $` |
-							| U-Net | 6-W`$_2$` | none | `$ -7.4\pm 9.9 $` | `$ -24.4\pm 15.8 $` | `$ -2.27\pm6.85 $` | `$ 1.46\pm8.39 $` | `$ 5.74\pm5.23 $` |
-							| FiLM-encoder | 9-W`$_2$` | labels | `$ \mathbf{-3.5\pm6.1} $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
-							| FiLM-final | 10-W`$_2$` | labels | `$ -10.1\pm11.7 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
-							|FiLM-bottleneck-1F | 17-W`$_2$` | visual | `$ -8.7\pm10.8 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
-							|Final-multiply-1F | 16-W`$_2$` | visual | `${-4.1\pm7.2}$` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
-							|FiLM-final-lstm-5F | 13-W`$_2$` | visual-motion | `$ \mathbf{-3.8\pm6.3} $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
+							| U-Net <br> U-Net | 6 <br> 6-W`$_2$` | none <br> none | `$  -2.1\pm 6.2 $` <br>  `$ -7.4\pm 9.9 $` | `$ -8.1\pm 5.9 $`<br> `$ -24.4\pm 15.8 $` | `$ -0.77\pm5.76 $`<br> `$ -2.27\pm6.85 $` | `$ 0.57\pm6.85 $` <br> `$ 1.46\pm8.39 $`  | `$ 10.88\pm3.21 $` <br> `$ 5.74\pm5.23 $`  |
+							| FiLM-encoder <br> Final-multiply | 9-W`$_2$` <br> 11-W`$_2$` | labels <br> labels | `$ \mathbf{-3.5\pm6.1} $` <br> <span style="color:gray">`$ -7.2\pm9.8 $`</span> | `$ -4.4\pm6.8 $`  <br> `$ -18.6\pm20.3 $` | `$ \mathbf{-1.68\pm5.47} $` <br> `$ -1.86\pm6.84 $` | `$ -0.39\pm6.48 $` <br> `$ \mathbf{2.36\pm8.80} $` | `$ \mathbf{11.44\pm4.15} $` <br> `$ 5.13\pm4.07 $` |
+							| FiLM-bottleneck-1F <br>Final-multiply-1F | 17-W`$_2$` <br> 16-W`$_2$` | visual <br> visual | `$ -8.7\pm10.8 $` <br> `${-4.1\pm7.2}$` | `$ \mathbf{-25.9\pm23.9} $` <br> `$ -15.4\pm14.3 $` | `$ -3.02\pm7.10 $` <br> `$ \mathbf{-1.49\pm6.08} $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> <br> `$ 0.98\pm8.39 $` | <span style="color:gray">`$ 5.09\pm5.08 $`</span> <br> `$ 9.18\pm3.71 $` |							|FiLM-final-lstm-5F | 13-W`$_2$` | visual-motion | `$ \mathbf{-3.8\pm6.3} $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
 							|SoP-unet5-Solos-3F | 21 | visual| `$-16.9\pm8.6$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
 						</textarea>
 					</section>
-
-				<!--
-								|Method | ID | Cond | SI-SDR `$\uparrow$` | PES `$\downarrow$` | SDR `$\uparrow$` | SIR `$\uparrow$` | SAR `$\uparrow$` |
-								| :--- | :-----: | :----: | :----: | :----: |  :----: |  :---: |  :---: |
-								| FiLM-bottleneck | 8-W`$_2$` | labels | `$ -8.1\pm9.4 $` | `$ -19.5\pm15.3 $` | `$ -2.77\pm6.64 $` | <span style="color:gray">`$ 1.17\pm8.24 $`</span> | <span style="color:gray">`$ 4.95\pm4.84 $`</span> |
-								| FiLM-encoder | 9-W`$_2$` | labels | `$ \mathbf{-3.5\pm6.1} $` | `$ -4.4\pm6.8 $`  | `$ \mathbf{-1.68\pm5.47} $` | `$ -0.39\pm6.48 $` | `$ \mathbf{11.44\pm4.15} $` |
-								| FiLM-final | 10-W`$_2$` | labels | `$ -10.1\pm11.7 $` | `$ \mathbf{-33.9\pm28.6 }$` | `$ -3.50\pm6.79 $` | `$ 0.29\pm9.14 $` | `$ 5.88\pm4.97 $` |
-								|FiLM-encoder-1F | 12-W`$_2$` | visual | `$ -8.3\pm8.9 $` | `$ -12.2\pm13.4 $` | `$ -3.38\pm5.54 $` | `$ -0.69\pm6.60 $` | `$ 5.91\pm4.25 $`  |
-								|FiLM-bottleneck-1F | 17-W`$_2$` | visual | `$ -8.7\pm10.8 $` | `$ \mathbf{-25.9\pm23.9} $` | `$ -3.02\pm7.10 $` | <span style="color:gray">`$ 1.17\pm8.95 $`</span> | <span style="color:gray">`$ 5.09\pm5.08 $`</span> |
-								|FiLM-final-1F | 18-W`$_2$` | visual | `$ -4.8\pm7.4 $` | `$ -10.9\pm8.7 $` | <span style="color:gray">`$ -2.24\pm6.22 $`</span> | `$ 0.05\pm7.91 $` | `$ 8.87\pm4.90 $` |
-								|Final-multiply-1F | 16-W`$_2$` | visual | `${-4.1\pm7.2}$` | `$ -15.4\pm14.3 $` | `$ \mathbf{-1.49\pm6.08} $` | `$ 0.98\pm8.39 $` | `$ 9.18\pm3.71 $` |
-								|FiLM-final-lstm-5F | 13-W`$_2$` | visual-motion | `$ \mathbf{-3.8\pm6.3} $` | `$ -9.4\pm12.2 $` | `$ -2.51\pm5.32 $` | `$ -1.43\pm6.38 $` | `$ \mathbf{12.44\pm4.72} $` |
-								|FiLM-bottleneck-lstm-5F | 14-W`$_2$` | visual-motion | `$ -4.7\pm6.9 $` | `$ -10.3\pm12.7 $` | `$ -1.55\pm5.94 $` | `$ 1.02\pm7.96 $` | `$ 7.90\pm3.27 $` |
-								|FiLM-bottleneck-mp-5F | 15-W`$_2$` | visual | `$ -7.0\pm7.8 $` | `$ -12.1\pm15.0 $` | `$ -2.46\pm5.82 $` | `$ 0.54\pm7.66 $` | `$ 6.28\pm3.61 $` |
-								|SoP-unet7-ft-3F | 20 | visual | `$-17.5\pm8.5$` | n/a | `$-2.57\pm4.99$` | `$0.47\pm6.43$` | `$6.89\pm2.48$` |
-								|SoP-unet5-Solos-3F | 21 | visual| `$-16.9\pm8.6$` | n/a | `$-2.9\pm4.7$` | `$-1.67\pm5.34$` | `$11.07\pm6.87$` |
-				-->
 				<section data-transition="none">
 					<h3>Summary of results</h3>
-					<img height="400px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/taslp_new_pics/exp69_dtq.png">
+					<img height="400px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/taslp_new_pics/exp6_16_dtq.png">
+					<div class="remark" style="text-align: center; background-color: rgba(255, 255, 255, 1); margin-bottom: 2em;">
+					* Exp. 6 - Baseline U-Net <br>
+					* Exp. 16 - Final-multiply-1F conditioning
+					</div>
+
 				</section>
 
 				<section data-transition="none">
 					<h3>Summary of results</h3>
 					<img height="400px" style="border:0; box-shadow: 0px 0px 0px #ffffff; " data-src="img/taslp_new_pics/per_instrument_metrics.png">
+				</section>
+
+				<section data-transition="none">
+					<h3>Results: Video Demo</h3>
+					<video controls>
+						<source src="video/C-U-Net_Demo.mp4" type="video/mp4">
+					</video>
 				</section>
 
 				<section data-markdown style="font-size: medium">
@@ -1155,6 +1153,16 @@
 
 			</section>
 
+			<section data-state="is-in-separation">
+				<h3>Summary of contributions</h3>
+				<ul>
+					<li> Proposed a conditioned model for time domain separation</li>
+					<li> Contributed to an audio-visual separation dataset </li>
+					<li> Demonstrated efficiency of the audio-visual approach </li>
+					<li> Conveyed a detailed study for fusion and conditioning methods </li>
+				</ul>
+			</section>
+
 			<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
 				<h2>IV - Conclusion</h2>
 			</section>
@@ -1176,12 +1184,22 @@
 			<section data-state="is-in-conclusion">
 				<h3>Research focus</h3>
 				<blockquote class="fragment"> Where can we merge different data representations? </blockquote>
+				<ul>
+					<li class="fragment"> Late fusion and hybrid fusion for high-level concepts</li>
+					<li class="fragment"> Early fusion for continuous and strong conditioning</li>
+				</ul>
 				<blockquote class="fragment"> How should we merge data from different sources? </blockquote>
-
-				<!--
-					<li class="affirmation fragment"> Late fusion and hybrid fusion for high-level concepts</li>
-					<li class="affirmation fragment"> Early fusion for continuous and strong conditioning</li>
-					-->
+				<ul>
+					<li class="fragment"> matching high-level concepts
+						<span class="fragment" data-fragment-index="3" style="color: #c8102e"> → concatenation / biasing </span>
+					</li>
+					<li class="fragment"> strong constraints
+						<span class="fragment" data-fragment-index="3" style="color: #c8102e"> → scaling </span>
+					</li>
+					<li class="fragment"> efficiency with dimension mismatch
+						<span class="fragment" data-fragment-index="3" style="color: #c8102e"> → FiLM </span>
+					</li>
+				</ul>
 			</section>
 
 			<section data-state="is-in-conclusion">
@@ -1223,6 +1241,39 @@
 			<section class="cover" data-background="img/mix1.png" data-state="no-title-footer no-progressbar has-dark-background">
 			<aside class="notes"> See Integrated Gradients at https://captum.ai/docs/captum_insights</aside>
 				Thank you!
+			</section>
+
+			<section class="cover" data-background="img/violin.png" data-state="no-title-footer no-progressbar has-dark-background">
+				<img src="img/image52.jpg" class="logo" style="height: 50px">
+				<img src="img/image56.png" class="logo" style="height: 50px">
+				<img src="img/image54.jpg" class="logo" style="height: 50px">
+
+				<h2>Audio-Visual Deep Learning Methods for <br> Musical Instrument Classification
+					and Separation</h2>
+				<p><em>PhD candidate:</em> Olga Slizovskaia </p>
+				<div class="multiCol" style="margin-left: 5em">
+					<div class="col" style="font-size: smaller">
+						<p><em>Supervisors:</em></p>
+						Dr. Emilia Gómez <h4>Joint Research Centre, EC <br> Music Technology Group, UPF</h4>
+						<p></p>
+						Dr. Gloria Haro <h4>Image Processing Group, UPF</h4>
+					</div>
+					<div class="col" style="font-size: smaller">
+						<p><em>Committee:</em></p>
+						Dr. Xavier Giró-i-Nieto <h4>Universitat Politècnica de Catalunya</h4>
+						<p></p>
+						Dr. Xavier Serra <h4>Universitat Pompeu Fabra</h4>
+						<p></p>
+						Dr. Estefanía Cano <h4>Agency for Science, Research and Technology, <br> A*STAR, Singapore</h4>
+					</div>
+				</div>
+				<p><em>21/10/2020</em></p>
+			</section>
+
+			<section class="cover" data-background="img/olga_bayan_box.gif"
+					 data-background-size="contain"
+					 data-state="no-title-footer no-progressbar has-dark-background">
+			Thank you!
 			</section>
 
 			<!--
@@ -1274,7 +1325,7 @@
 				  mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
 				  config: 'TeX-AMS_HTML-full',
 				  // pass other options into `MathJax.Hub.Config()`
-				  TeX: { extensions: ["color.js"], Macros: { RR: "{\\bf R}" }
+				  TeX: { extensions: ["color.js"], Macros: { RR: "{\bf R}" }
 				  },
 			},
 			// specified using percentage units.
